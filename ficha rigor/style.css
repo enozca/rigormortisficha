@@ -1,0 +1,327 @@
+/* Global Styles & Reset Básico */
+:root {
+    --font-maquina-escrever: 'Special Elite', monospace;
+    --font-principal: 'Merriweather', serif;
+    --font-titulos-grandes: 'Cinzel Decorative', cursive;
+    --font-titulos-secao: var(--font-maquina-escrever);
+    --font-labels-botoes: 'Roboto Condensed', sans-serif;
+
+    --cor-destaque: #5f70ba;
+    --cor-texto-sobre-fundo-escuro-pagina: #e0e0e0; /* Texto na página com fundo de arte */
+    --cor-texto-inputs: #111111;
+    --cor-fundo-inputs: rgba(240, 240, 240, 0.9);
+    --cor-bordas-inputs: #777;
+    --cor-bordas-inputs-focus: var(--cor-destaque);
+
+    /* Overlay para a arte de fundo da PÁGINA, para garantir legibilidade do texto claro */
+    --cor-overlay-pagina: rgba(20, 20, 25, 0.85); /* Escuro, para texto claro em cima */
+    /* Ou se a arte da PÁGINA for clara e o texto escuro, seria algo como rgba(255,255,255,0.7) */
+
+    --cor-bordas-secoes-pagina: rgba(200, 200, 200, 0.2); /* Bordas dentro da página */
+    --cor-aptidao-marcada: var(--cor-destaque);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-labels-botoes);
+    color: var(--cor-texto-sobre-fundo-escuro-pagina); /* Cor padrão para texto, caso algo vaze */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.5;
+
+    /* ARTE DE FUNDO PRINCIPAL PARA O BODY */
+    background-image: url('arte-fundo-geral-escura.jpg'); /* <<< SUBSTITUA PELA SUA ARTE DE FUNDO GERAL */
+    background-color: #1a1a1a; /* Fallback bem escuro */
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Efeito paralaxe */
+    min-height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    align-items: center;
+    padding: 20px 0; /* Mantém padding para espaçar as páginas do topo/base do container */
+}
+
+/* Controls Bar */
+.controls-bar {
+    background-color: rgba(10, 10, 10, 0.95); /* Um pouco mais opaco */
+    padding: 10px 20px; /* Aumentei um pouco o padding vertical */
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.6);
+    position: sticky;
+    top: 0; /* Deve encostar no topo */
+    z-index: 1000;
+    border-bottom: 1px solid var(--cor-destaque);
+}
+/* ... (estilos dos botões da controls-bar permanecem os mesmos) ... */
+.controls-bar button {
+    background-color: #333; color: var(--cor-texto-sobre-fundo-escuro-pagina); border: 1px solid #555; padding: 8px 15px;
+    font-family: var(--font-labels-botoes); font-size: 0.85em; cursor: pointer; border-radius: 2px;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    display: inline-flex; align-items: center; gap: 7px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.controls-bar button svg { fill: var(--cor-texto-sobre-fundo-escuro-pagina); transition: fill 0.2s; width:15px; height:15px;}
+.controls-bar button:hover { background-color: var(--cor-destaque); border-color: var(--cor-destaque); color: #fff; }
+.controls-bar button:hover svg { fill: #fff; }
+.dice-roller { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+#diceResult { color: var(--cor-texto-sobre-fundo-escuro-pagina); font-family: var(--font-maquina-escrever); font-size: 1.1em; }
+
+
+/* Notification Area */
+#notificationArea {
+    position: fixed;
+    top: 60px; /* Ajustado para um pouco abaixo da barra de controles */
+    left: 50%; transform: translateX(-50%); background-color: var(--cor-destaque);
+    color: white; padding: 12px 22px; border-radius: 3px; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    z-index: 1001; opacity: 0; transition: opacity 0.5s ease-in-out; pointer-events: none;
+    font-family: var(--font-labels-botoes); text-align: center; font-size: 0.9em;
+}
+#notificationArea.show { opacity: 1; }
+
+
+.page {
+    width: 850px;
+    max-width: 95%;
+    border: 1px solid rgba(255,255,255,0.15); /* Borda mais visível contra fundo escuro */
+    padding: 30px 35px;
+    box-shadow: 0px 5px 25px rgba(0,0,0,0.5);
+    position: relative;
+    /* Não precisa de margin-top aqui se o .container já tem padding */
+    color: var(--cor-texto-sobre-fundo-escuro-pagina);
+
+    /* FUNDO DA PÁGINA (Textura de papel sobre um overlay) */
+    /* A ordem importa: o overlay vem primeiro para ficar por baixo da textura de papel. */
+    background-image: url('textura-papel-claro.jpg'); /* <<< SUBSTITUA TEXTURA-PAPEL-CLARO.JPG */
+    /* Se a textura já tiver a transparência/cor desejada, pode remover o linear-gradient */
+    background-blend-mode: overlay; /* Ou multiply, screen, etc. Experimente modos de mesclagem */
+                                  /* Se a textura for opaca e clara, talvez não precise de blend-mode */
+                                  /* ou use o overlay para escurecer a arte do BODY, e o .page só com sua textura */
+
+    /* Ajustes para a textura de papel (se for tileable) */
+    background-repeat: repeat, no-repeat; /* Papel repete, overlay não */
+    background-size: auto, cover;       /* Papel no tamanho original, overlay cobre */
+    background-position: center center; /* Para o overlay */
+}
+
+/* Se preferir que o overlay seja sobre a arte do BODY, e a página tenha sua própria textura clara:
+.page {
+    ...
+    color: var(--cor-texto-inputs); // Texto escuro para página clara
+
+    background-image: url('textura-papel-claro.jpg');
+    background-color: #f0f0f0; // Fallback para a textura da página
+    background-size: cover; // Ou repeat se for tileable
+    background-position: center;
+}
+No body, a arte de fundo seria:
+body {
+    ...
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('arte-fundo-geral-escura.jpg'); // Overlay sobre a arte do body
+    background-size: cover, cover;
+    ...
+}
+Vou seguir com a primeira abordagem (overlay na página) para manter o texto da página claro.
+*/
+
+
+/* Common input/textarea styling */
+input[type="text"], input[type="number"], textarea, select {
+    background-color: var(--cor-fundo-inputs);
+    border: 1px solid var(--cor-bordas-inputs);
+    padding: 9px 12px;
+    font-family: var(--font-maquina-escrever); font-size: 1.05em;
+    width: 100%; box-sizing: border-box; color: var(--cor-texto-inputs);
+    border-radius: 0px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.15);
+}
+textarea { resize: vertical; min-height: 65px; line-height: 1.75; }
+input:focus, textarea:focus, select:focus {
+    outline: none; background-color: #fff; border-color: var(--cor-bordas-inputs-focus);
+    box-shadow: 0 0 0 3px rgba(95, 112, 186, 0.25), inset 1px 1px 3px rgba(0,0,0,0.1);
+}
+label {
+    font-family: var(--font-labels-botoes); font-weight: 700; font-size: 0.75em;
+    margin-bottom: 5px; display: block; color: rgba(224, 224, 224, 0.8);
+    text-transform: uppercase; letter-spacing: 0.8px;
+}
+.checkbox-label { font-weight: normal; display: inline-flex; align-items: center; text-transform: none; font-family: var(--font-labels-botoes); font-size:0.9em; color: var(--cor-texto-sobre-fundo-escuro-pagina);}
+.checkbox-label input { width: auto; margin-right: 7px; filter: invert(0.8) hue-rotate(180deg) brightness(1.2) contrast(0.8); /* Ajustado para melhor visual em fundo escuro */ }
+
+
+/* Header */
+.character-sheet .sheet-header { text-align: left; margin-bottom: 25px; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 15px;}
+.character-sheet .nome-label { font-family: var(--font-titulos-grandes); font-size: 2.2em; font-weight: 700; color: var(--cor-texto-sobre-fundo-escuro-pagina); margin-right: 15px; vertical-align: baseline; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);}
+.character-sheet .nome-input { font-family: var(--font-maquina-escrever); font-size: 1.7em; border: none; border-bottom: 2px solid rgba(224,224,224,0.5); width: 65%; background: transparent; padding-left: 8px; vertical-align: baseline; font-weight: 400; color: var(--cor-texto-sobre-fundo-escuro-pagina);}
+.character-sheet .nome-input::placeholder { color: rgba(224, 224, 224, 0.5); }
+.character-sheet .nome-input:focus { border-bottom-color: var(--cor-destaque); }
+
+/* ... (O restante do CSS de `style_v5_final_com_arte.css` da resposta anterior continua aqui, com pequenos ajustes se necessário para o novo contexto de fundo) ... */
+/* Core Info, Attributes & Poles, Section Box, Aptidões, Atuação, Detalhes, Inventory & Contacts, Habilidades, Logo Footer, Investigation Sheet, Print Styles */
+/* Apenas certifique-se de que as cores de texto e bordas internas das seções contrastem bem com o novo fundo da .page (que é a textura sobre o overlay escuro) */
+
+/* Exemplo de ajuste para .section-box se o fundo da .page for escuro */
+.section-box {
+    border: 1px solid var(--cor-bordas-secoes-pagina); /* Usando a variável nova */
+    padding: 18px;
+    margin-bottom: 25px;
+    background-color: rgba(0,0,0,0.25); /* Um pouco mais de contraste para a seção */
+    border-radius: 2px;
+}
+.section-box h3 {
+    font-family: var(--font-titulos-secao);
+    font-size: 1.35em;
+    color: var(--cor-texto-sobre-fundo-escuro-pagina);
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.section-box h3 small {
+    font-family: var(--font-labels-botoes);
+    font-size: 0.7em;
+    font-weight: normal;
+    text-transform: none;
+    color: rgba(224,224,224,0.7);
+    letter-spacing: 0.3px;
+}
+
+/* Labels dos Atributos */
+.attr-label .suit { color: var(--cor-destaque); } /* Default para naipes */
+.attr-label .suit.heart, .attr-label .suit.diamond { color: #e78484; } /* Vermelho mais claro para contraste */
+
+
+/* Todos os outros estilos da versão anterior (Core Info, Poles, etc.) devem ser colados aqui,
+   verificando se as cores de texto e bordas internas fazem sentido com o novo esquema.
+   A principal mudança foi no `body` e no `.page` para o fundo. */
+
+
+/* Cole o restante do CSS da resposta anterior aqui, ajustando cores se necessário */
+/* Core Info */
+.character-core-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px 22px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--cor-bordas-secoes-pagina);}
+.core-item { display: flex; flex-direction: column; gap: 5px; }
+.core-buttons-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid var(--cor-bordas-secoes-pagina);}
+.small-button {
+    padding: 9px 14px; font-size: 0.75em; background-color: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3);
+    color: var(--cor-texto-sobre-fundo-escuro-pagina); cursor: pointer; font-family: var(--font-labels-botoes); text-transform: uppercase; letter-spacing: 0.5px;
+    display: inline-flex; align-items: center; gap: 7px; border-radius: 2px;
+}
+.small-button svg { fill: var(--cor-texto-sobre-fundo-escuro-pagina); width:13px; height:13px;}
+.small-button:hover { background-color: var(--cor-destaque); color:white; border-color: var(--cor-destaque);}
+.small-button:hover svg { fill: white; }
+
+/* Attributes & Poles */
+.main-content-wrapper { border-bottom: 1px solid var(--cor-bordas-secoes-pagina); padding-bottom: 20px; margin-bottom: 25px; }
+.section-title {
+    font-family: var(--font-titulos-secao); text-transform: uppercase; font-weight: normal; 
+    font-size: 1.3em; color: var(--cor-texto-sobre-fundo-escuro-pagina); border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 6px; margin-bottom: 15px; letter-spacing: 1px;
+}
+.title-note { font-weight:normal; font-size: 0.8em; color: rgba(224,224,224,0.7); text-transform: none; letter-spacing: 0;}
+.attributes-and-poles-section { display: flex; flex-wrap: wrap; gap: 30px; }
+.attributes-values-column { flex: 1; min-width: 230px; display: flex; flex-direction: column; gap: 15px; }
+.attribute-entry { display: flex; flex-direction: column; gap: 4px; }
+.attr-label { font-family: var(--font-titulos-secao); font-size: 1.15em; color: var(--cor-texto-sobre-fundo-escuro-pagina); margin-bottom: 3px; text-transform: none; letter-spacing: 0.5px;}
+/* .attr-label .suit já estilizado acima */
+.attr-value-input { text-align: center; padding: 6px; font-size: 1.3em; }
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+
+
+.attributes-details-and-poles-column { flex: 1.5; min-width: 340px; display: flex; flex-direction: column; gap: 18px; }
+.health-pole-wrapper { display: flex; flex-direction: column; gap: 15px; }
+.health-pole-container { display: flex; flex-direction: column; border: 1px solid #222; background-color: #222; box-shadow: 0 1px 3px rgba(0,0,0,0.5);}
+.pole-label-box { background-color: #181818; color: var(--cor-texto-sobre-fundo-escuro-pagina); padding: 6px 14px; font-family: var(--font-labels-botoes); font-weight: bold; font-size: 0.9em; text-align: left; text-transform: uppercase; letter-spacing: 0.5px;}
+.pole-bar { background-color: #404040; height: 26px; border-top: 1px solid #303030; display: flex; align-items: center; padding: 0 7px; gap: 3px; cursor: pointer;}
+.pole-bubble { width: 14px; height: 14px; background-color: #606060; border: 1px solid #383838; border-radius: 50%; transition: background-color 0.2s ease;}
+.pole-bubble.filled { background-color: var(--cor-destaque); border-color: var(--cor-destaque); box-shadow: 0 0 4px var(--cor-destaque); }
+.consequencia-text { width: calc(100% - 10px); margin: 8px 5px 5px 5px; min-height: 38px; font-size: 0.9em; border: 1px dashed #555; padding: 6px; background-color: rgba(0,0,0,0.2); color: #ccc;}
+.status-effects { margin-top: 12px; font-size: 0.9em; display: flex; gap: 15px; align-items: center; font-family: var(--font-labels-botoes); color: var(--cor-texto-sobre-fundo-escuro-pagina);}
+.status-effects input[type="text"] { width: auto; flex-grow: 1;}
+
+
+/* Aptidões */
+.aptidoes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px 18px; font-size: 0.9em; }
+.aptidao-item { display: flex; align-items: center; }
+.aptidao-item input[type="checkbox"] { width: auto; margin-right: 9px; transform: scale(0.85); filter: invert(0.8) hue-rotate(180deg) brightness(1.2) contrast(0.8); }
+.aptidao-item label { font-family: var(--font-maquina-escrever); font-weight: normal; margin-bottom: 0; display:inline; cursor: pointer; color: var(--cor-texto-sobre-fundo-escuro-pagina); font-size: 1em;}
+.aptidao-item .aptidao-nome.selected-aptitude { color: var(--cor-aptidao-marcada); text-decoration: underline; text-decoration-color: var(--cor-aptidao-marcada); text-decoration-thickness: 1.5px; text-underline-offset: 3px;}
+
+/* Atuação */
+.atuacao-config { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 12px; }
+#atuacaoDetalhes { font-size: 0.85em; margin-top: 12px; padding-left: 12px; border-left: 2px solid var(--cor-destaque); background-color: rgba(0,0,0,0.1); padding: 10px; font-family: var(--font-labels-botoes); color: rgba(224,224,224,0.9);}
+#atuacaoDetalhes p { margin: 5px 0; letter-spacing: 0.3px; }
+#displayNivelMalandragem, #displayNivelFortuna, #itensIniciaisFortuna { font-weight: bold; font-family: var(--font-maquina-escrever); color: #fff; }
+
+/* Detalhes */
+.details-list { display: flex; flex-direction: column; gap: 12px; }
+.detail-item { display: flex; align-items: center; gap: 10px; border-bottom: 1px dotted rgba(255,255,255,0.2); padding-bottom: 7px;}
+.detail-item label { margin-bottom: 0; flex-shrink: 0; min-width: fit-content; font-family: var(--font-labels-botoes); font-size: 0.8em; color: rgba(224,224,224,0.8); letter-spacing: 0.5px;}
+.icon-text svg { vertical-align: -2px; margin-right: 6px; fill: rgba(224,224,224,0.7); width:13px; height:13px;}
+.detail-input { flex-grow: 1; border: none; background: transparent; font-family: var(--font-maquina-escrever); color: var(--cor-texto-sobre-fundo-escuro-pagina); }
+.detail-input::placeholder { color: rgba(224,224,224,0.4); }
+.detail-input:focus { background-color: rgba(255,255,255,0.05); }
+.small-number-input { width: 60px; padding: 5px; text-align: center; font-family: var(--font-maquina-escrever); }
+
+/* Inventory & Contacts */
+.inventory-contacts-section { display: flex; flex-direction: column; gap: 20px; }
+@media (min-width: 768px) { .inventory-contacts-section { flex-direction: row; } }
+.inventory-box { flex: 1.2; }
+.contacts-box { flex: 0.8; }
+.contacts-box textarea { min-height: 120px; }
+#inventarioItens .item-slot, #vestimentasAtivas .vestimenta-slot { display: flex; align-items: center; margin-bottom: 7px; gap: 6px;}
+#inventarioItens .item-slot input, #vestimentasAtivas .vestimenta-slot input { flex-grow: 1; font-size: 1em;}
+
+/* Habilidades */
+#habilidadesAdquiridas.full-width-textarea { min-height: 80px; }
+
+/* Logo Footer */
+.logo-footer { font-family: var(--font-titulos-grandes); font-style: normal; font-size: 2.5em; text-align: center; margin-top: 35px; padding-top: 20px; border-top: 2px solid rgba(255,255,255,0.2); color: var(--cor-texto-sobre-fundo-escuro-pagina); text-shadow: 1px 1px 3px rgba(0,0,0,0.7);}
+
+/* Investigation Sheet */
+.investigation-sheet .sheet-header { font-family: var(--font-titulos-secao); font-size: 1.8em; font-weight: normal; color: var(--cor-texto-sobre-fundo-escuro-pagina); text-align: center; border-bottom: 2px solid rgba(255,255,255,0.25); margin-bottom: 30px; padding-bottom: 15px; text-transform: uppercase; letter-spacing: 1.5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);}
+.investigation-section { margin-bottom: 25px; border: 1px solid var(--cor-bordas-secoes-pagina); padding: 20px; background-color: rgba(0,0,0,0.15); border-radius: 2px;}
+.investigation-section label { font-family: var(--font-labels-botoes); font-weight: 700; font-size: 1.1em; display: block; margin-bottom: 12px; color: rgba(224,224,224,0.9); border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;}
+.investigation-section label small { font-size: 0.8em; font-weight: normal; color: rgba(224,224,224,0.6); text-transform: none;}
+.large-textarea { width: 100%; min-height: 180px; }
+.notes-textarea { min-height: 120px; }
+
+/* Print Styles (ajustado para fontes) */
+@media print {
+    :root { --font-maquina-escrever: 'Courier New', Courier, monospace; }
+    body { background: #fff !important; color: #000 !important; padding:0; margin:0; -webkit-print-color-adjust: exact; print-color-adjust: exact;}
+    .controls-bar, #notificationArea { display: none !important; }
+    .container { gap: 0; padding-bottom: 0; }
+    .page {
+        box-shadow: none !important; border: 1px solid #000 !important; margin: 0 auto 5mm auto !important;
+        width: 100% !important; page-break-after: always !important; margin-top: 0 !important;
+        background-image: none !important; background-color: #fff !important; color: #000 !important;
+    }
+    .page:last-child { page-break-after: avoid !important; }
+    input, textarea, select { border-color: #000 !important; background-color: #fff !important; color: #000 !important; font-family: var(--font-maquina-escrever) !important; }
+    label, .attr-note, #atuacaoDetalhes p, .status-effects, .section-title, .pole-label-box .pole-label-text, .title-note { font-family: var(--font-labels-botoes), sans-serif !important; color: #000 !important; }
+    .checkbox-label input { filter: none !important; }
+    .pole-label-box { background-color: #111 !important; color: #f0f0f0 !important; }
+    .suit, .attr-label .suit.heart, .attr-label .suit.diamond { color: #000 !important; }
+    .pole-bar { background-color: #ddd !important; border-top-color: #000 !important; }
+    .pole-bubble { border-color: #000 !important; background-color: #fff !important; }
+    .pole-bubble.filled { background-color: #888 !important; box-shadow: none !important; }
+    .consequencia-text { background-color: #f0f0f0 !important; color: #000 !important; border-color: #777 !important;}
+    .attr-label, .section-box h3, .character-sheet .nome-label, .logo-footer, .investigation-sheet .sheet-header { color: #000 !important; font-family: var(--font-titulos-grandes) !important; text-shadow: none !important; border-color: #000 !important;}
+    .section-box { background-color: #f8f8f8 !important; }
+    .aptidao-item .aptidao-nome.selected-aptitude { color: #000 !important; font-weight: bold; text-decoration: none !important; }
+    .icon-text svg { display: none; }
+}
