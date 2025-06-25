@@ -1,0 +1,394 @@
+/* === THEME VARIABLES (Copie as definições de tema da sua última versão funcional aqui) === */
+.theme-noir-azul {
+    --font-maquina-escrever: 'Special Elite', monospace;
+    --font-principal: 'Merriweather', serif;
+    --font-titulos-grandes-nome: 'Oswald', sans-serif;
+    --font-logo: 'UnifrakturMaguntia', cursive;
+    --font-titulos-secao: var(--font-maquina-escrever);
+    --font-labels-botoes: 'Roboto Condensed', sans-serif;
+
+    --cor-destaque: #5f70ba; 
+    --cor-destaque-hover: #7c8dc8;
+    --cor-texto-principal-pagina: #dadada; 
+    --cor-texto-secundario-pagina: #a0a0a0; 
+    --cor-texto-inputs: #181818; 
+    --cor-fundo-inputs: rgba(225, 225, 230, 0.95); 
+    --cor-bordas-inputs: #555;
+    --cor-bordas-inputs-focus: var(--cor-destaque);
+
+    --cor-fundo-pagina-overlay: rgba(30, 30, 35, 0.94); /* Overlay para o conteúdo dos blocos */
+    --cor-fundo-body: #0d0d0f; 
+    --cor-bordas-secoes-pagina: rgba(200, 200, 200, 0.15); /* Bordas internas dos blocos */
+    --cor-aptidao-marcada: var(--cor-destaque);
+
+    --imagem-fundo-body: url('arte-fundo-geral-escura.jpg'); 
+    --imagem-textura-bloco: url('textura-papel-cinza.png'); /* Textura para os blocos */
+    --cor-fallback-bloco: #1f1f23; /* Cor de fundo para os blocos se textura falhar */
+    --background-blend-bloco: multiply; 
+}
+.theme-papel-antigo { 
+    --font-maquina-escrever: 'Special Elite', monospace;
+    --font-principal: 'Merriweather', serif;
+    --font-titulos-grandes-nome: 'Oswald', sans-serif;
+    --font-logo: 'UnifrakturMaguntia', cursive;
+    --font-titulos-secao: 'Roboto Condensed', sans-serif; /* Mais legível em fundo claro */
+    --font-labels-botoes: 'Roboto Condensed', sans-serif;
+
+    --cor-destaque: #8a0707; /* Um vermelho escuro */
+    --cor-destaque-hover: #ab2c2c;
+    --cor-texto-principal-pagina: #3a3228; /* Texto escuro tipo sépia */
+    --cor-texto-secundario-pagina: #5c5346; 
+    --cor-texto-inputs: #222; 
+    --cor-fundo-inputs: rgba(255, 255, 240, 0.9); /* Levemente bege */
+    --cor-bordas-inputs: #968c7e;
+    --cor-bordas-inputs-focus: var(--cor-destaque);
+
+    --cor-fundo-pagina-overlay: rgba(245, 240, 230, 0.88); /* Overlay mais claro */
+    --cor-fundo-body: #e0d8c8; /* Um tom de papel envelhecido para o fundo do body */
+    --cor-bordas-secoes-pagina: rgba(60, 50, 40, 0.25); 
+    --cor-aptidao-marcada: var(--cor-destaque);
+
+    --imagem-fundo-body: url('textura-papel-antigo.jpg'); /* Textura de papel geral */
+    --imagem-textura-bloco: url('textura-pergaminho-suave.png'); 
+    --cor-fallback-bloco: #f0e9dd;
+    --background-blend-bloco: multiply;
+}
+.theme-high-contrast { 
+    --font-maquina-escrever: 'Arial', sans-serif; /* Fontes sem serifa padrão para legibilidade */
+    --font-principal: 'Arial', sans-serif;
+    --font-titulos-grandes-nome: 'Arial Black', sans-serif;
+    --font-logo: 'Impact', sans-serif;
+    --font-titulos-secao: 'Arial Black', sans-serif;
+    --font-labels-botoes: 'Arial', sans-serif;
+
+    --cor-destaque: #ffff00; /* Amarelo brilhante */
+    --cor-destaque-hover: #eeee00;
+    --cor-texto-principal-pagina: #ffffff; /* Branco puro */
+    --cor-texto-secundario-pagina: #dddddd; 
+    --cor-texto-inputs: #000000; /* Preto puro */
+    --cor-fundo-inputs: #ffffff; /* Branco puro */
+    --cor-bordas-inputs: #000000;
+    --cor-bordas-inputs-focus: var(--cor-destaque);
+
+    --cor-fundo-pagina-overlay: rgba(10, 10, 10, 0.97); 
+    --cor-fundo-body: #000000; /* Preto puro para o body */
+    --cor-bordas-secoes-pagina: #ffffff; 
+    --cor-aptidao-marcada: var(--cor-destaque);
+
+    --imagem-fundo-body: none; /* Sem imagem de fundo */
+    --imagem-textura-bloco: none;
+    --cor-fallback-bloco: #101010; /* Fundo de bloco escuro */
+    --background-blend-bloco: normal; /* Sem blend mode especial */
+}
+
+
+/* === ESTILOS GLOBAIS === */
+html { height: 100%; box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+body {
+    font-family: var(--font-labels-botoes);
+    background-color: var(--cor-fundo-body);
+    background-image: var(--imagem-fundo-body);
+    color: var(--cor-texto-principal-pagina); /* Cor base do texto no body */
+    display: flex; flex-direction: column;
+    line-height: 1.5;
+    background-size: cover; background-position: center center; background-attachment: fixed;
+    min-height: 100%; margin: 0; padding: 0;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    overflow-x: hidden;
+}
+
+/* CONTROLS BAR e THEME SWITCHER (fixos no topo) */
+.theme-switcher {
+    position: fixed; top: 10px; right: 15px; z-index: 1002; /* Acima da controls-bar */
+    background-color: rgba(10,10,10,0.85); padding: 5px 8px; border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 6px;
+}
+.theme-switcher label { font-size: 0.75em; color: #bbb; margin-bottom: 0; text-transform: uppercase; }
+.theme-switcher select {
+    background-color: #333; color: #ddd; border: 1px solid #555; padding: 3px 5px;
+    border-radius: 2px; font-size: 0.75em; width: auto; font-family: var(--font-labels-botoes);
+}
+
+.controls-bar {
+    background-color: rgba(10, 10, 10, 0.97); padding: 8px 15px; /* Reduzido um pouco */
+    width: 100%; display: flex; justify-content: flex-start; align-items: center; gap: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.65); position: fixed; /* MUDADO PARA FIXED */
+    top: 0; left: 0; z-index: 1000; border-bottom: 1px solid var(--cor-destaque);
+    transition: background-color 0.3s ease, border-color 0.3s ease; min-height: 45px; /* Altura mínima */
+}
+.controls-bar button {
+    background-color: transparent; color: var(--cor-texto-principal-pagina); border: 1px solid rgba(255,255,255,0.25); padding: 7px 12px;
+    font-family: var(--font-labels-botoes); font-size: 0.8em; cursor: pointer; border-radius: 2px;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.1s ease-out;
+    display: inline-flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.icon-svg { width:14px; height:14px; fill: currentColor; }
+.controls-bar button:hover { background-color: var(--cor-destaque); border-color: var(--cor-destaque-hover); color: #fff; transform: translateY(-1px); box-shadow: 0 1px 3px rgba(0,0,0,0.2);}
+.controls-bar button:active { transform: translateY(0px); }
+.dice-roller { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+#diceResult { color: var(--cor-texto-principal-pagina); font-family: var(--font-maquina-escrever); font-size: 1em; }
+
+/* NOTIFICATION AREA (abaixo da controls bar) */
+#notificationArea {
+    position: fixed; top: 55px; /* (altura da controls-bar + respiro) */
+    left: 50%; transform: translateX(-50%) translateY(-20px);
+    background-color: var(--cor-destaque); color: white; padding: 10px 20px; border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 1001; opacity: 0;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-out; pointer-events: none;
+    font-family: var(--font-labels-botoes); text-align: center; font-size: 0.85em;
+}
+#notificationArea.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* WORKSPACE E BLOCOS DRAGGABLE */
+.workspace-container {
+    position: relative; width: 100%; flex-grow: 1;
+    padding: 65px 20px 20px 20px; /* Padding superior para acomodar controls-bar e theme-switcher */
+    overflow: auto; /* Permite scroll do workspace se necessário */
+}
+
+.draggable-block {
+    position: absolute; /* Crucial para Interact.js posicionar */
+    background-color: var(--cor-fallback-bloco);
+    background-image: linear-gradient(var(--cor-fundo-pagina-overlay), var(--cor-fundo-pagina-overlay)), var(--imagem-textura-bloco);
+    background-blend-mode: var(--background-blend-bloco);
+    background-repeat: repeat, no-repeat; /* Textura repete, overlay não */
+    background-size: auto, cover; /* Textura em tamanho real, overlay cobre */
+    background-position: center center;
+    border: 1px solid var(--cor-bordas-secoes-pagina);
+    box-shadow: 2px 2px 7px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.03) inset;
+    border-radius: 1px; /* Cantos bem retos */
+    color: var(--cor-texto-principal-pagina);
+    display: flex; flex-direction: column;
+    overflow: hidden; /* Esconde o conteúdo que exceder as bordas do bloco */
+    touch-action: none;
+    transition: box-shadow 0.2s ease, opacity 0.2s ease, transform 0.15s ease-out;
+    min-width: 300px; /* Largura mínima para um bloco ser útil */
+    min-height: 100px; /* Altura mínima */
+}
+.draggable-block.interact-dragging, .draggable-block.interact-resizing {
+    box-shadow: 5px 5px 18px rgba(0,0,0,0.4), 0 0 0 1.5px var(--cor-destaque) inset;
+    opacity: 0.9;
+    /* transform: scale(1.01); (pode ser demais com o z-index já alto) */
+}
+
+.block-header {
+    padding: 7px 12px; /* Padding menor no header */
+    background-color: rgba(0,0,0,0.25);
+    border-bottom: 1px solid var(--cor-bordas-secoes-pagina);
+    cursor: grab; display: flex; justify-content: space-between; align-items: center; user-select: none;
+    transition: background-color 0.3s ease;
+}
+.block-header:active { cursor: grabbing; background-color: rgba(0,0,0,0.35); }
+.block-title {
+    font-family: var(--font-titulos-secao); font-size: 0.85em; /* Título do bloco menor */
+    text-transform: uppercase; letter-spacing: 1.5px; color: var(--cor-texto-principal-pagina); font-weight: normal;
+}
+.block-content {
+    padding: 18px 22px; flex-grow: 1;
+    overflow-y: auto; /* Scroll se conteúdo do bloco for maior que sua altura */
+    /* max-height: calc(100vh - 150px); Limita a altura máxima do conteúdo rolável */
+    
+    /* === Adicionado: Estilização da Barra de Rolagem === */
+    scrollbar-width: thin; /* Para Firefox */
+    scrollbar-color: var(--cor-destaque-hover) rgba(0,0,0,0.1); /* Para Firefox: thumb e track */
+}
+
+.block-content::-webkit-scrollbar { /* Para Chrome, Edge, Safari */
+    width: 10px;
+    height: 10px;
+}
+.block-content::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1); /* Cor de fundo da trilha */
+    border-radius: 5px;
+}
+.block-content::-webkit-scrollbar-thumb {
+    background-color: var(--cor-destaque-hover); /* Cor do "polegar" da barra */
+    border-radius: 5px;
+    border: 2px solid transparent; /* Cria um padding visual */
+    background-clip: content-box;
+}
+.block-content::-webkit-scrollbar-thumb:hover {
+    background-color: var(--cor-destaque);
+}
+/* === Fim da estilização da Barra de Rolagem === */
+
+
+/* ESTILOS INTERNOS DA FICHA (COPIADOS DA SUA VERSÃO FUNCIONAL ANTERIOR E ADAPTADOS) */
+/* Assegure que todos os seletores estão prefixados com .block-content para especificidade */
+/* ... (Seu CSS interno restante aqui, que já é bastante completo) ... */
+.block-content input[type="text"], .block-content input[type="number"], .block-content textarea, .block-content select {
+    background-color: var(--cor-fundo-inputs);
+    border: 1px solid var(--cor-bordas-inputs);
+    padding: 9px 12px;
+    font-family: var(--font-maquina-escrever); font-size: 1em;
+    width: 100%; box-sizing: border-box; color: var(--cor-texto-inputs);
+    border-radius: 0px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+}
+.block-content textarea { resize: vertical; min-height: 60px; line-height: 1.7; }
+.block-content input::placeholder, .block-content textarea::placeholder { color: color-mix(in srgb, var(--cor-texto-inputs) 35%, transparent) ; font-style: italic; opacity: 0.7;}
+
+.block-content input:focus, .block-content textarea:focus, .block-content select:focus {
+    outline: none; background-color: color-mix(in srgb, var(--cor-fundo-inputs) 95%, white 5%); border-color: var(--cor-bordas-inputs-focus);
+    box-shadow: 0 0 0 2.5px color-mix(in srgb, var(--cor-bordas-inputs-focus) 30%, transparent), inset 1px 1px 2px rgba(0,0,0,0.1);
+}
+.block-content label { font-family: var(--font-labels-botoes); font-weight: 700; font-size: 0.75em; margin-bottom: 5px; display: block; color: var(--cor-texto-secundario-pagina); text-transform: uppercase; letter-spacing: 0.8px; }
+.block-content .checkbox-label { font-weight: normal; display: inline-flex; align-items: center; text-transform: none; font-family: var(--font-labels-botoes); font-size:0.9em; color: var(--cor-texto-principal-pagina);}
+.block-content .checkbox-label input { width: auto; margin-right: 6px; accent-color: var(--cor-destaque); }
+
+.block-content .sheet-header { text-align: left; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--cor-bordas-secoes-pagina); position: relative;}
+.block-content .nome-label { font-family: var(--font-titulos-grandes-nome); font-size: 2.0em; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; color: var(--cor-texto-principal-pagina); margin-right: 15px; vertical-align: baseline; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+.block-content .nome-input { font-family: var(--font-maquina-escrever); font-size: 1.4em; border: none; border-bottom: 1.5px solid var(--cor-texto-secundario-pagina); width: 100%; background: transparent; padding: 3px 0; vertical-align: baseline; font-weight: 400; color: var(--cor-texto-principal-pagina); }
+.block-content .nome-input::placeholder { color: var(--cor-texto-secundario-pagina); opacity: 0.7; }
+.block-content .nome-input:focus { border-bottom-color: var(--cor-destaque); }
+
+.block-content .character-core-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--cor-bordas-secoes-pagina); }
+.block-content .core-item { display: flex; flex-direction: column; gap: 5px; }
+.block-content .core-buttons-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; padding-top: 10px; border-top: 1px solid var(--cor-bordas-secoes-pagina); }
+.block-content .small-button { padding: 8px 12px; font-size: 0.7em; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: var(--cor-texto-principal-pagina); cursor: pointer; font-family: var(--font-labels-botoes); text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 6px; border-radius: 2px; transition: all 0.2s ease-out;}
+.block-content .small-button:hover { background-color: var(--cor-destaque); color:white; border-color: var(--cor-destaque-hover); transform: translateY(-1px); box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+.block-content .small-button:active { transform: translateY(0); }
+
+
+.block-content .main-content-wrapper { border-bottom: 1px solid var(--cor-bordas-secoes-pagina); padding-bottom: 18px; margin-bottom: 22px; }
+.block-content .section-title { font-family: var(--font-titulos-secao); text-transform: uppercase; font-weight: normal; font-size: 1.1em; color: var(--cor-texto-principal-pagina); border-bottom: 1px solid var(--cor-bordas-secoes-pagina); padding-bottom: 7px; margin-bottom: 15px; letter-spacing: 1.2px;}
+.block-content .title-note { font-weight:normal; font-size: 0.8em; color: var(--cor-texto-secundario-pagina); text-transform: none; letter-spacing: 0;}
+.block-content .attributes-and-poles-section { display: flex; flex-wrap: wrap; gap: 25px; }
+.block-content .attributes-values-column { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 12px; }
+.block-content .attribute-entry { display: flex; flex-direction: column; gap: 4px; }
+.block-content .attr-label { font-family: var(--font-titulos-secao); font-size: 1.05em; color: var(--cor-texto-principal-pagina); margin-bottom: 3px; text-transform: none; letter-spacing: 0.5px;}
+.block-content .attr-label .suit { font-size: 1.2em; margin-right: 6px; color: var(--cor-destaque); }
+.block-content .attr-label .suit.heart, .block-content .attr-label .suit.diamond { color: #e89898; }
+.block-content .attr-value-input { text-align: center; padding: 5px; font-size: 1.1em; }
+
+.block-content .attributes-details-and-poles-column { flex: 1.5; min-width: 300px; display: flex; flex-direction: column; gap: 15px; }
+.block-content .health-pole-wrapper { display: flex; flex-direction: column; gap: 12px; }
+.block-content .health-pole-container { display: flex; flex-direction: column; border: 1px solid #181818; background-color: #252528; box-shadow: 0 1px 3px rgba(0,0,0,0.5); border-radius: 2px;}
+.block-content .pole-label-box { background-color: #1a1a1d; color: var(--cor-texto-principal-pagina); padding: 6px 12px; font-family: var(--font-labels-botoes); font-weight: bold; font-size: 0.8em; text-align: left; text-transform: uppercase; letter-spacing: 0.8px;}
+.block-content .pole-bar { background-color: #38383d; height: 24px; border-top: 1px solid #2a2a2d; display: flex; align-items: center; padding: 0 7px; gap: 3.5px; cursor: pointer;}
+.block-content .pole-bubble { width: 13px; height: 13px; background-color: #505055; border: 1px solid #303033; border-radius: 50%; transition: all 0.15s ease-in-out; transform-origin: center;}
+.block-content .pole-bubble:hover { transform: scale(1.1); }
+.block-content .pole-bubble.filled { background-color: var(--cor-destaque); border-color: var(--cor-destaque); box-shadow: 0 0 5px color-mix(in srgb, var(--cor-destaque) 60%, transparent); }
+.block-content .consequencia-text { width: calc(100% - 16px); margin: 10px 8px 8px 8px; min-height: 35px; font-size: 0.85em; border: 1px dashed #444; padding: 7px; background-color: rgba(0,0,0,0.15); color: #bbb;}
+.block-content .status-effects { margin-top: 10px; font-size: 0.85em; display: flex; gap: 15px; align-items: center; font-family: var(--font-labels-botoes); color: var(--cor-texto-principal-pagina);}
+.block-content .status-effects input[type="text"] { width: auto; flex-grow: 1; font-size: 0.9em; }
+
+.block-content .section-box { border: 1px solid var(--cor-bordas-secoes-pagina); padding: 15px; margin-bottom: 20px; background-color: rgba(0,0,0,0.1); border-radius: 2px;}
+.block-content .section-box h3 { font-family: var(--font-titulos-secao); font-size: 1.15em; color: var(--cor-texto-principal-pagina); margin-top: 0; margin-bottom: 15px; border-bottom: 1px solid var(--cor-bordas-secoes-pagina); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1.2px;}
+.block-content .section-box h3 small { font-family: var(--font-labels-botoes); font-size: 0.75em; font-weight: normal; text-transform: none; color: var(--cor-texto-secundario-pagina); letter-spacing: 0.3px;}
+
+.block-content .aptidoes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 8px 15px; font-size: 0.85em; }
+.block-content .aptidao-item { display: flex; align-items: center; }
+.block-content .aptidao-item input[type="checkbox"] { width: auto; margin-right: 8px; transform: scale(0.8); accent-color: var(--cor-destaque); }
+.block-content .aptidao-item label { font-family: var(--font-maquina-escrever); font-weight: normal; margin-bottom: 0; display:inline; cursor: pointer; color: var(--cor-texto-principal-pagina); font-size: 0.95em;}
+.block-content .aptidao-item .aptidao-nome.selected-aptitude { color: var(--cor-aptidao-marcada); text-decoration: underline; text-decoration-color: var(--cor-aptidao-marcada); text-decoration-thickness: 1.5px; text-underline-offset: 3px;}
+
+.block-content .atuacao-config { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 15px; margin-bottom: 10px; }
+.block-content #atuacaoDetalhes { font-size: 0.8em; margin-top: 12px; padding-left: 12px; border-left: 2px solid var(--cor-destaque); background-color: rgba(0,0,0,0.05); padding: 10px; font-family: var(--font-labels-botoes); color: var(--cor-texto-secundario-pagina);}
+.block-content #atuacaoDetalhes p { margin: 5px 0; letter-spacing: 0.3px; }
+.block-content #displayNivelMalandragem, .block-content #displayNivelFortuna, .block-content #itensIniciaisFortuna { font-weight: bold; font-family: var(--font-maquina-escrever); color: var(--cor-texto-principal-pagina); /* Mais destaque para texto da fortuna */ }
+
+
+.block-content .details-list { display: flex; flex-direction: column; gap: 10px; }
+.block-content .detail-item { display: flex; align-items: center; gap: 10px; border-bottom: 1px dotted var(--cor-bordas-secoes-pagina); padding-bottom: 7px;}
+.block-content .detail-item label { margin-bottom: 0; flex-shrink: 0; min-width: fit-content; font-family: var(--font-labels-botoes); font-size: 0.75em; color: var(--cor-texto-secundario-pagina); letter-spacing: 0.5px;}
+.block-content .icon-text svg.icon-svg { vertical-align: -2px; margin-right: 6px; fill: var(--cor-texto-secundario-pagina); width:13px; height:13px; opacity: 0.8;}
+.block-content .detail-input { flex-grow: 1; border: none; background: transparent; font-family: var(--font-maquina-escrever); color: var(--cor-texto-principal-pagina); font-size: 0.9em;}
+.block-content .detail-input::placeholder { color: color-mix(in srgb, var(--cor-texto-principal-pagina) 40%, transparent) }
+.block-content .detail-input:focus { background-color: rgba(255,255,255,0.05); }
+.block-content .small-number-input { width: 55px; padding: 5px; text-align: center; font-family: var(--font-maquina-escrever); font-size: 0.9em;}
+
+.block-content .inventory-contacts-section { display: flex; flex-direction: column; gap: 18px; }
+@media (min-width: 768px) { .block-content .inventory-contacts-section { flex-direction: row; } }
+.block-content .inventory-box { flex: 1.2; }
+.block-content .contacts-box { flex: 0.8; }
+.block-content .contacts-box textarea { min-height: 110px; font-size: 0.9em;}
+.block-content #inventarioItens .item-slot, .block-content #vestimentasAtivas .vestimenta-slot { display: flex; align-items: center; margin-bottom: 6px; gap: 6px;}
+.block-content #inventarioItens .item-slot input, .block-content #vestimentasAtivas .vestimenta-slot input { flex-grow: 1; font-size: 0.95em;}
+
+.block-content #habilidadesAdquiridas.full-width-textarea { min-height: 70px; }
+.block-content .logo-footer { font-family: var(--font-logo); font-style: normal; font-size: 2.2em; text-align: center; margin-top: 30px; padding-top: 18px; border-top: 2px solid var(--cor-bordas-secoes-pagina); color: var(--cor-texto-principal-pagina); text-shadow: 1px 1px 3px rgba(0,0,0,0.7);}
+
+
+.block-content .investigation-sheet .sheet-header { font-family: var(--font-titulos-secao); font-size: 1.5em; color: var(--cor-texto-principal-pagina); text-align: center; border-bottom: 1px solid var(--cor-bordas-secoes-pagina); margin-bottom: 25px; padding-bottom: 12px; text-transform: uppercase; letter-spacing: 1.5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);}
+.block-content .investigation-header { /* Renomeei para evitar conflito de nome com .sheet-header geral */
+    font-family: var(--font-titulos-secao); font-size: 1.5em; color: var(--cor-texto-principal-pagina);
+    text-align: center; border-bottom: 1px solid var(--cor-bordas-secoes-pagina);
+    margin-bottom: 25px; padding-bottom: 12px; text-transform: uppercase; letter-spacing: 1.5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+.block-content .investigation-section { margin-bottom: 20px; border: 1px solid var(--cor-bordas-secoes-pagina); padding: 15px; background-color: rgba(0,0,0,0.1); border-radius: 2px;}
+.block-content .investigation-section label { font-family: var(--font-labels-botoes); font-weight: 700; font-size: 0.9em; display: block; margin-bottom: 10px; color: var(--cor-texto-secundario-pagina); border-bottom: 1px solid var(--cor-bordas-secoes-pagina); padding-bottom: 7px; text-transform: uppercase; letter-spacing: 0.8px;}
+.block-content .investigation-section label small { font-size: 0.85em; font-weight: normal; color: var(--cor-texto-secundario-pagina); opacity:0.8; text-transform: none;}
+.block-content .large-textarea { width: 100%; min-height: 150px; }
+.block-content .notes-textarea { min-height: 100px; }
+
+/* PRINT STYLES (Exemplo inicial, precisa ser expandido) */
+@media print {
+    body {
+        background-image: none !important;
+        background-color: #fff !important;
+        color: #000 !important;
+        font-size: 10pt; /* Tamanho base para impressão */
+        padding: 0;
+        margin:0;
+    }
+    .theme-switcher, .controls-bar, #notificationArea {
+        display: none !important; /* Esconde controles da UI */
+    }
+    .workspace-container {
+        padding: 10mm !important; /* Margem para impressão */
+        overflow: visible !important;
+        position: static !important;
+        height: auto !important;
+        width: auto !important;
+        display: block !important;
+    }
+    .draggable-block {
+        position: relative !important; /* Blocos em fluxo, não absolutos */
+        width: 100% !important; /* Ocupa largura total */
+        height: auto !important;
+        page-break-inside: avoid; /* Tenta evitar quebrar blocos entre páginas */
+        margin-bottom: 10mm;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        transform: none !important;
+        background-image: none !important;
+        background-color: #fff !important;
+    }
+    .block-header {
+        background-color: #eee !important;
+        color: #000 !important;
+        border-bottom: 1px solid #ccc !important;
+    }
+    .block-content {
+        padding: 10px !important;
+        color: #000 !important;
+        overflow: visible !important;
+        max-height: none !important;
+    }
+    .block-content input, .block-content textarea, .block-content select {
+        border: 1px solid #ddd !important;
+        background-color: #f9f9f9 !important;
+        color: #000 !important;
+    }
+    .block-content input[type="checkbox"] + label .aptidao-nome.selected-aptitude {
+        text-decoration: none; /* Simplifica para impressão */
+        font-weight: bold;
+    }
+    /* ... Mais estilos para otimizar o layout de cada seção para impressão ... */
+    .pole-bar { background-color: #e0e0e0 !important; }
+    .pole-bubble { background-color: #aaa !important; border-color: #888 !important; }
+    .pole-bubble.filled { background-color: #555 !important; border-color: #333 !important; }
+
+    .nome-label, .nome-input, .section-title, .section-box h3 {
+        color: #000 !important;
+        text-shadow: none !important;
+    }
+     #displayNivelMalandragem, #displayNivelFortuna, #itensIniciaisFortuna, .aptidao-item label, .attr-label {
+        color: #333 !important;
+    }
+
+}
