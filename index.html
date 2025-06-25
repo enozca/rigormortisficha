@@ -10,40 +10,104 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="theme-switcher">
-        <label for="themeSelector">Tema:</label>
-        <select id="themeSelector">
-            <option value="theme-noir-azul">Noir Azul (Padrão)</option>
-            <option value="theme-papel-antigo">Papel Antigo</option>
-            <option value="theme-high-contrast">Alto Contraste</option>
-        </select>
+    <div id="authPanel" class="auth-panel">
+        <div id="authContainer" class="auth-container">
+            <h2>Login / Registro</h2>
+            <div id="loginForm">
+                <label for="loginEmail" class="sr-only">Email para Login</label>
+                <input type="email" id="loginEmail" placeholder="Email" autocomplete="username">
+                <label for="loginPassword" class="sr-only">Senha para Login</label>
+                <input type="password" id="loginPassword" placeholder="Senha" autocomplete="current-password">
+                <button id="loginUserButton">Login</button>
+                <p>Não tem conta? <a href="#" id="showRegisterLink" role="button">Registre-se</a></p>
+            </div>
+            <div id="registerForm" style="display:none;">
+                <label for="registerEmail" class="sr-only">Email para Registro</label>
+                <input type="email" id="registerEmail" placeholder="Email" autocomplete="username">
+                <label for="registerPassword" class="sr-only">Senha para Registro</label>
+                <input type="password" id="registerPassword" placeholder="Senha" autocomplete="new-password">
+                <button id="registerUserButton">Registrar</button>
+                <p>Já tem conta? <a href="#" id="showLoginLink" role="button">Login</a></p>
+            </div>
+            <div id="userInfo" style="display:none;">
+                <p>Logado como: <span id="userEmailDisplay"></span></p>
+                <button id="logoutButton">Logout</button>
+                <hr>
+                <h3>Seus Personagens</h3>
+                <label for="userCharacterSelect" class="sr-only">Selecione um Personagem</label>
+                <select id="userCharacterSelect">
+                    <option value="">-- Novo Personagem --</option>
+                    <!-- Opções de personagens carregadas aqui -->
+                </select>
+                <div id="characterActionButtons">
+                    <button id="loadSelectedCharacterButton">Carregar/Limpar Ficha</button>
+                </div>
+                <div id="saveAsNewContainer" style="margin-top:10px;">
+                    <label for="newCharSaveName">Nome do Personagem (para novo ou salvar como):</label>
+                    <input type="text" id="newCharSaveName" placeholder="Nome para Salvar/Novo">
+                    <small>Usado para nomear um novo personagem ou para "Salvar Como". Deixe em branco ao salvar um personagem carregado para sobrescrevê-lo.</small>
+                </div>
+                <button id="deleteSelectedCharacterButton" style="margin-top:5px; background-color: var(--cor-destaque-hover); display:none;">Deletar Selecionado</button>
+            </div>
+        </div>
     </div>
 
     <div class="controls-bar">
-        <button id="saveButton" title="Salvar dados e layout"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3ZM19 19H5V5H16.17L19 7.83V19ZM12 12C10.9 12 10 12.9 10 14C10 15.1 10.9 16 12 16C13.1 16 14 15.1 14 14C14 12.9 13.1 12 12 12ZM15 9H5V11H15V9Z"/></svg>Salvar</button>
-        <button id="loadButton" title="Carregar dados e layout"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z"/></svg>Carregar</button>
-        <button id="clearButton" title="Limpar dados e layout"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z"/></svg>Limpar</button>
-        <button id="resetLayoutButton" title="Resetar posições e tamanhos dos blocos"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.25 2.52.77-1.28-3.52-2.09V8H12z"/></svg>Resetar Layout</button>
+        <button id="toggleAuthPanelButton" title="Abrir/Fechar Painel de Login e Personagens">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            Login/Personagens
+        </button>
+        <button id="saveButton" title="Salvar Ficha Atual (Local ou Online)">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3ZM19 19H5V5H16.17L19 7.83V19ZM12 12C10.9 12 10 12.9 10 14C10 15.1 10.9 16 12 16C13.1 16 14 15.1 14 14C14 12.9 13.1 12 12 12ZM15 9H5V11H15V9Z"/></svg>
+            Salvar Ficha
+        </button>
+        <button id="clearButton" title="Limpar dados da ficha atual (cria uma ficha nova)">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z"/></svg>
+            Limpar Ficha
+        </button>
+        <button id="saveLayoutButton" title="Salvar layout dos blocos">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3ZM19 19H5V5H16.17L19 7.83V19ZM12 12C10.9 12 10 12.9 10 14C10 15.1 10.9 16 12 16C13.1 16 14 15.1 14 14C14 12.9 13.1 12 12 12ZM15 9H5V11H15V9Z"/></svg>
+            Salvar Layout
+        </button>
+        <button id="resetLayoutButton" title="Resetar posições e tamanhos dos blocos">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.25 2.52.77-1.28-3.52-2.09V8H12z"/></svg>
+            Resetar Layout
+        </button>
+        <div class="dice-roller">
+            <button id="roll2d6Button">
+                 <svg class="icon-svg" viewBox="0 0 512 512"><path d="M128 128h256v256H128zM106.7 0C83.15 0 64 19.15 64 42.67v33.33C28.73 76 0 104.7 0 140v232c0 35.27 28.73 64 64 64h33.33c0 23.52 19.15 42.67 42.67 42.67h232c23.52 0 42.67-19.15 42.67-42.67V448h33.33C483.3 448 512 419.3 512 384V140c0-35.27-28.73-64-64-64V42.67C448 19.15 428.8 0 405.3 0H106.7zM224 200c-13.25 0-24 10.75-24 24s10.75 24 24 24s24-10.75 24-24S237.3 200 224 200zM288 200c-13.25 0-24 10.75-24 24s10.75 24 24 24s24-10.75 24-24S301.3 200 288 200zM224 264c-13.25 0-24 10.75-24 24s10.75 24 24 24s24-10.75 24-24S237.3 264 224 264zM288 264c-13.25 0-24 10.75-24 24s10.75 24 24 24s24-10.75 24-24S301.3 264 288 264z"/></svg>
+                2d6
+            </button>
+            <span id="diceResult" aria-live="polite"></span>
+        </div>
+        <div class="theme-switcher">
+            <label for="themeSelector">Tema:</label>
+            <select id="themeSelector">
+                <option value="theme-noir-azul">Noir Azul (Padrão)</option>
+                <option value="theme-papel-antigo">Papel Antigo</option>
+                <option value="theme-high-contrast">Alto Contraste</option>
+            </select>
+        </div>
     </div>
-    <div id="notificationArea"></div>
+    <div id="notificationArea" role="alert" aria-live="assertive"></div>
 
-    <div class="workspace-container" id="workspaceContainer">
+    <main class="workspace-container" id="workspaceContainer" style="display:none;">
         <!-- BLOCO: PERSONAGEM -->
         <div class="draggable-block resize-drag" id="blockPersonagem" data-block-id="personagem" data-default-width="850px" data-default-height="auto" style="z-index:1;">
             <div class="block-header"> <span class="block-title">PERSONAGEM</span> </div>
             <div class="block-content">
                 <header class="sheet-header">
-                    <span class="nome-label" id="nomeLabel">NOME DO INVESTIGADOR:</span>
+                    <label for="charName" class="nome-label" id="nomeLabel">NOME DO INVESTIGADOR:</label>
                     <input type="text" id="charName" class="nome-input" placeholder="Digite o nome...">
                 </header>
                 <div class="character-core-info">
                     <div class="core-item"><label for="charConceito">CONCEITO</label><input type="text" id="charConceito" placeholder="Ex: Jornalista cínico..."></div>
-                    <div class="core-item"><label for="charAspiracao">ASPIRAÇÃO</label><input type="text" id="charAspiracao" placeholder="Ex: Expor a corrupção..."></div>
+                    <div class="core-item"><label for="charAspiracao">ASPIRAÇÃO</label><input type="text" id="charAspiracao" placeholder="Ex: Expor a corrupção... (Ver Livro p/ Ponto de Fardo)"></div>
                     <div class="core-item"><label for="charArquetipo">ARQUÉTIPO</label><select id="charArquetipo"><option value="">SELECIONE...</option><option value="colerico">COLÉRICO</option><option value="melancolico">MELANCÓLICO</option><option value="sanguineo">SANGUÍNEO</option><option value="fleumatico">FLEUMÁTICO</option></select></div>
                 </div>
                 <div class="core-buttons-row">
-                    <button id="pontoFardo" class="small-button" title="Ponto de Fardo"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>P FARDO (0)</button>
-                    <button id="ativarArquetipo" class="small-button" title="Usar Arquétipo"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 11.55L5.54 9.24 2 11l10 5 10-5-3.54-1.76L12 13.55zM12 17.1L5.54 14.79 2 16l10 5 10-5-3.54-1.79L12 17.1z"/></svg>USAR ARQUÉTIPO</button>
+                    <button id="pontoFardo" class="small-button" title="Ponto de Fardo (Ganha ao agir na Aspiração. Gasta para sucesso automático ou recuperar Volição)"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>P FARDO (0)</button>
+                    <button id="ativarArquetipo" class="small-button" title="Usar Habilidade de Arquétipo (1x por ambiente)"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 11.55L5.54 9.24 2 11l10 5 10-5-3.54-1.76L12 13.55zM12 17.1L5.54 14.79 2 16l10 5 10-5-3.54-1.79L12 17.1z"/></svg>USAR ARQUÉTIPO</button>
                 </div>
                 <div class="main-content-wrapper">
                     <div class="attributes-and-poles-section">
@@ -57,27 +121,41 @@
                         <div class="attributes-details-and-poles-column">
                             <div class="section-title">POLOS VITAIS</div>
                             <div class="health-pole-wrapper">
-                                <div class="health-pole-container health-pole"><div class="pole-label-box"><span class="pole-label-text">SAÚDE (INÍCIO: 3)</span></div><div class="pole-bar" id="saudePole" data-max-points="10"></div><input type="hidden" id="saudeValue" value="3"><textarea id="saudeConsequencias" class="consequencia-text" placeholder="Consequências Saúde 0..."></textarea></div>
-                                <div class="health-pole-container volition-pole"><div class="pole-label-box"><span class="pole-label-text">VOLIÇÃO (INÍCIO: 3)</span></div><div class="pole-bar" id="volicaoPole" data-max-points="10"></div><input type="hidden" id="volicaoValue" value="3"><textarea id="volicaoConsequencias" class="consequencia-text" placeholder="Consequências Volição 0..."></textarea></div>
+                                <div class="health-pole-container health-pole"><div class="pole-label-box"><span class="pole-label-text">SAÚDE (INÍCIO: 3)</span></div><div class="pole-bar" id="saudePole" data-max-points="6"></div><input type="hidden" id="saudeValue" value="3"><label for="saudeConsequencias" class="sr-only">Consequências de Saúde 0</label><textarea id="saudeConsequencias" class="consequencia-text" placeholder="Consequências Saúde 0: Lesão, Cicatriz, Amputação, Morte..."></textarea></div>
+                                <div class="health-pole-container volition-pole"><div class="pole-label-box"><span class="pole-label-text">VOLIÇÃO (INÍCIO: 3)</span></div><div class="pole-bar" id="volicaoPole" data-max-points="6"></div><input type="hidden" id="volicaoValue" value="3"><label for="volicaoConsequencias" class="sr-only">Consequências de Volição 0</label><textarea id="volicaoConsequencias" class="consequencia-text" placeholder="Consequências Volição 0: Fobia, Mania, Colapso..."></textarea></div>
                             </div>
-                            <div class="status-effects"><label class="checkbox-label"><input type="checkbox" id="isTensionado">TENSIONADO?</label><input type="text" id="vicioPersonagem" placeholder="VÍCIO..."></div>
+                            <div class="status-effects">
+                                <label class="checkbox-label"><input type="checkbox" id="isTensionado">TENSIONADO? (Ver Livro para efeitos)</label>
+                                <label for="vicioPersonagem" class="sr-only">Vício do Personagem</label>
+                                <input type="text" id="vicioPersonagem" placeholder="VÍCIO... (Ver Livro para benefícios)">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="section-box"><h3 id="aptidoesTitle">APTIDÕES <small>(ESCOLHA <span id="maxAptidoesCount">5</span> COM +1)</small></h3><div id="aptidoesGrid" class="aptidoes-grid"></div></div>
+                <div class="section-box"><h3 id="aptidoesTitle">APTIDÕES <small>(Escolha 5 iniciais. Máx Aptidões = 5 + Erudição) <span id="aptidoesCountDisplay" class="title-note"></span></small></h3><div id="aptidoesGrid" class="aptidoes-grid"></div></div>
                 <div class="section-box"><h3>ATUAÇÃO</h3><div class="atuacao-config"><div class="atuacao-item"><label for="ocupacaoInput">OCUPAÇÃO</label><input type="text" id="ocupacaoInput" placeholder="Ex: Bibliotecário..."></div><div class="atuacao-item"><label for="nivelFortunaSelect">NÍVEL DE FORTUNA</label><select id="nivelFortunaSelect"><option value="5">V - BAIXA</option><option value="4">IV - MODERADA</option><option value="3" selected>III - CONFORTÁVEL</option><option value="2">II - ALTA</option><option value="1">I - MÍTICA</option></select></div></div><div id="atuacaoDetalhes"><p>Fortuna: <span id="displayNivelFortuna">III</span> | Malandragem: <span id="displayNivelMalandragem">III</span></p><p>Itens Iniciais: <span id="itensIniciaisFortuna"></span></p></div></div>
                 <div class="section-box"><h3>DETALHES</h3><div class="details-list">
                     <div class="detail-item"><label for="misterioDetail"><span class="icon-text"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c0 .55.45 1 1 1s1-.45 1-1v-3h.5c4.69 0 8.5-3.81 8.5-8.5S17.19 2 12.5 2h-1zm0 15c-3.58 0-6.5-2.92-6.5-6.5S7.92 4 11.5 4s6.5 2.92 6.5 6.5-2.92 6.5-6.5 6.5zM11 6v5h2V6h-2zm0 6v2h2v-2h-2z"/></svg>MISTÉRIO:</span></label> <input type="text" id="misterioDetail" class="detail-input" placeholder="O enigma pessoal..."></div>
                     <div class="detail-item"><label for="segredoDetail"><span class="icon-text"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg>SEGREDO:</span></label> <input type="text" id="segredoDetail" class="detail-input" placeholder="O que esconde..."></div>
                     <div class="detail-item"><label for="interpretacaoPenumbraDetail"><span class="icon-text"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>INTERPRETAÇÃO (PENUMBRA):</span></label> <input type="text" id="interpretacaoPenumbraDetail" class="detail-input" placeholder="Sua visão da Penumbra..."></div>
                     <div class="detail-item"><label for="medosDetail"><span class="icon-text"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2V7zm0 8h2v2h-2v-2z"/></svg>MEDOS/FOBIAS:</span></label> <input type="text" id="medosDetail" class="detail-input" placeholder="Seus temores..."></div>
-                    <div class="detail-item"><label for="focosCount">FOCOS:</label> <input type="number" id="focosCount" value="0" min="0" class="small-number-input"></div>
+                    <div class="detail-item"><label for="focosCount">FOCOS (Ganha 5 ao resolver Mistério Pessoal):</label> <input type="number" id="focosCount" value="0" min="0" class="small-number-input"></div>
                 </div></div>
                 <div class="inventory-contacts-section">
-                    <div class="section-box inventory-box"><h3>EQUIPAMENTOS</h3><div id="inventarioItens"></div><div id="vestimentasAtivas"></div></div>
-                    <div class="section-box contacts-box"><h3>CONTATOS</h3><textarea id="contatosList" placeholder="Nome - Detalhe ou Telefone..."></textarea></div>
+                    <div class="section-box inventory-box">
+                        <h3>EQUIPAMENTOS</h3>
+                        <div id="inventarioItens">
+                            <label for="inventarioItensText">Inventário Geral (Máx 5 itens + Vestimentas. Ver Livro para classes e bônus)</label>
+                            <textarea id="inventarioItensText" placeholder="Liste seus itens aqui..." rows="5"></textarea>
+                        </div>
+                        <div id="vestimentasAtivas">
+                            <label for="vestimentasAtivasText">Vestimentas Ativas (Máx 2. Ver Livro para bônus)</label>
+                            <textarea id="vestimentasAtivasText" placeholder="Descreva suas vestimentas..." rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="section-box contacts-box"><h3>CONTATOS</h3><label for="contatosList" class="sr-only">Lista de Contatos</label><textarea id="contatosList" placeholder="Nome - Detalhe ou Telefone..."></textarea></div>
                 </div>
-                <div class="section-box"><h3>HABILIDADES & APRIMORAMENTO</h3><label for="pontosAprimoramento">PONTOS DE APRIMORAMENTO:</label><input type="number" id="pontosAprimoramento" value="0" min="0" class="small-number-input"><textarea id="habilidadesAdquiridas" class="full-width-textarea" placeholder="Liste Habilidades..."></textarea></div>
+                <div class="section-box"><h3>HABILIDADES & APRIMORAMENTO</h3><label for="pontosAprimoramento">PONTOS DE APRIMORAMENTO (Ganha 1 ao solucionar Mistérios):</label><input type="number" id="pontosAprimoramento" value="0" min="0" class="small-number-input"><label for="habilidadesAdquiridas" class="sr-only">Habilidades Adquiridas</label><textarea id="habilidadesAdquiridas" class="full-width-textarea" placeholder="Liste Habilidades Adquiridas (Ver Livro para custos e efeitos)..."></textarea></div>
                 <div class="logo-footer">Rigor Mortis</div>
             </div>
         </div>
@@ -86,16 +164,18 @@
         <div class="draggable-block resize-drag" id="blockInvestigacao" data-block-id="investigacao" data-default-width="600px" data-default-height="auto" style="z-index:2;">
             <div class="block-header"><span class="block-title">INVESTIGAÇÃO</span></div>
             <div class="block-content">
-                <header class="sheet-header investigation-header">FICHA DE INVESTIGAÇÃO</header>
-                <div class="investigation-section"><label for="casoPerguntasText">CASO & PERGUNTAS INICIAIS <small>(MÁX 5)</small></label><textarea id="casoPerguntasText" class="large-textarea" placeholder="1. ..."></textarea></div>
+                 <header class="sheet-header investigation-header">FICHA DE INVESTIGAÇÃO</header>
+                <div class="investigation-section"><label for="casoPerguntasText">CASO & PERGUNTAS INICIAIS <small>(MÁX 5 PERGUNTAS SIM/NÃO/IRRELEVANTE)</small></label><textarea id="casoPerguntasText" class="large-textarea" placeholder="1. ..."></textarea></div>
                 <div class="investigation-section"><label for="palacioMentalText">PALÁCIO MENTAL <small>(PISTAS, CONEXÕES, TEORIAS)</small></label><textarea id="palacioMentalText" class="large-textarea" placeholder="Pista: ... Conexão: ..."></textarea></div>
                 <div class="investigation-section"><label for="anotacoesGeraisText">ANOTAÇÕES GERAIS</label><textarea id="anotacoesGeraisText" class="large-textarea notes-textarea" placeholder="..."></textarea></div>
             </div>
         </div>
-         <!-- Adicione mais blocos aqui se desejar, ex: para Equipamentos e Contatos separados -->
-    </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
-    <script src="script.js" defer></script> <!-- Adicionado defer -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

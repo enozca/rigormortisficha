@@ -1,4 +1,4 @@
-/* === THEME VARIABLES (Copie as definições de tema da sua última versão funcional aqui) === */
+/* === THEME VARIABLES === */
 .theme-noir-azul {
     --font-maquina-escrever: 'Special Elite', monospace;
     --font-principal: 'Merriweather', serif;
@@ -7,80 +7,79 @@
     --font-titulos-secao: var(--font-maquina-escrever);
     --font-labels-botoes: 'Roboto Condensed', sans-serif;
 
-    --cor-destaque: #5f70ba; 
+    --cor-destaque: #5f70ba;
     --cor-destaque-hover: #7c8dc8;
-    --cor-texto-principal-pagina: #dadada; 
-    --cor-texto-secundario-pagina: #a0a0a0; 
-    --cor-texto-inputs: #181818; 
-    --cor-fundo-inputs: rgba(225, 225, 230, 0.95); 
+    --cor-texto-principal-pagina: #dadada;
+    --cor-texto-secundario-pagina: #a0a0a0;
+    --cor-texto-inputs: #181818;
+    --cor-fundo-inputs: rgba(225, 225, 230, 0.95);
     --cor-bordas-inputs: #555;
     --cor-bordas-inputs-focus: var(--cor-destaque);
 
     --cor-fundo-pagina-overlay: rgba(30, 30, 35, 0.94); /* Overlay para o conteúdo dos blocos */
-    --cor-fundo-body: #0d0d0f; 
+    --cor-fundo-body: #0d0d0f;
     --cor-bordas-secoes-pagina: rgba(200, 200, 200, 0.15); /* Bordas internas dos blocos */
     --cor-aptidao-marcada: var(--cor-destaque);
 
-    --imagem-fundo-body: url('arte-fundo-geral-escura.jpg'); 
-    --imagem-textura-bloco: url('textura-papel-cinza.png'); /* Textura para os blocos */
+    --imagem-fundo-body: url('arte-fundo-geral-escura.jpg'); /* Adicione o caminho correto se tiver esta imagem */
+    --imagem-textura-bloco: url('textura-papel-cinza.png'); /* Adicione o caminho correto se tiver esta imagem */
     --cor-fallback-bloco: #1f1f23; /* Cor de fundo para os blocos se textura falhar */
-    --background-blend-bloco: multiply; 
+    --background-blend-bloco: multiply;
 }
-.theme-papel-antigo { 
+.theme-papel-antigo {
     --font-maquina-escrever: 'Special Elite', monospace;
     --font-principal: 'Merriweather', serif;
     --font-titulos-grandes-nome: 'Oswald', sans-serif;
     --font-logo: 'UnifrakturMaguntia', cursive;
-    --font-titulos-secao: 'Roboto Condensed', sans-serif; /* Mais legível em fundo claro */
+    --font-titulos-secao: 'Roboto Condensed', sans-serif;
     --font-labels-botoes: 'Roboto Condensed', sans-serif;
 
-    --cor-destaque: #8a0707; /* Um vermelho escuro */
+    --cor-destaque: #8a0707;
     --cor-destaque-hover: #ab2c2c;
-    --cor-texto-principal-pagina: #3a3228; /* Texto escuro tipo sépia */
-    --cor-texto-secundario-pagina: #5c5346; 
-    --cor-texto-inputs: #222; 
-    --cor-fundo-inputs: rgba(255, 255, 240, 0.9); /* Levemente bege */
+    --cor-texto-principal-pagina: #3a3228;
+    --cor-texto-secundario-pagina: #5c5346;
+    --cor-texto-inputs: #222;
+    --cor-fundo-inputs: rgba(255, 255, 240, 0.9);
     --cor-bordas-inputs: #968c7e;
     --cor-bordas-inputs-focus: var(--cor-destaque);
 
-    --cor-fundo-pagina-overlay: rgba(245, 240, 230, 0.88); /* Overlay mais claro */
-    --cor-fundo-body: #e0d8c8; /* Um tom de papel envelhecido para o fundo do body */
-    --cor-bordas-secoes-pagina: rgba(60, 50, 40, 0.25); 
+    --cor-fundo-pagina-overlay: rgba(245, 240, 230, 0.88);
+    --cor-fundo-body: #e0d8c8;
+    --cor-bordas-secoes-pagina: rgba(60, 50, 40, 0.25);
     --cor-aptidao-marcada: var(--cor-destaque);
 
-    --imagem-fundo-body: url('textura-papel-antigo.jpg'); /* Textura de papel geral */
-    --imagem-textura-bloco: url('textura-pergaminho-suave.png'); 
+    --imagem-fundo-body: url('textura-papel-antigo.jpg'); /* Adicione o caminho correto se tiver esta imagem */
+    --imagem-textura-bloco: url('textura-pergaminho-suave.png'); /* Adicione o caminho correto se tiver esta imagem */
     --cor-fallback-bloco: #f0e9dd;
     --background-blend-bloco: multiply;
 }
-.theme-high-contrast { 
-    --font-maquina-escrever: 'Arial', sans-serif; /* Fontes sem serifa padrão para legibilidade */
+.theme-high-contrast {
+    --font-maquina-escrever: 'Arial', sans-serif;
     --font-principal: 'Arial', sans-serif;
     --font-titulos-grandes-nome: 'Arial Black', sans-serif;
     --font-logo: 'Impact', sans-serif;
     --font-titulos-secao: 'Arial Black', sans-serif;
     --font-labels-botoes: 'Arial', sans-serif;
 
-    --cor-destaque: #ffff00; /* Amarelo brilhante */
+    --cor-destaque: #ffff00;
     --cor-destaque-hover: #eeee00;
-    --cor-texto-principal-pagina: #ffffff; /* Branco puro */
-    --cor-texto-secundario-pagina: #dddddd; 
-    --cor-texto-inputs: #000000; /* Preto puro */
-    --cor-fundo-inputs: #ffffff; /* Branco puro */
+    --cor-texto-principal-pagina: #ffffff;
+    --cor-texto-secundario-pagina: #dddddd;
+    --cor-texto-inputs: #000000;
+    --cor-fundo-inputs: #ffffff;
     --cor-bordas-inputs: #000000;
     --cor-bordas-inputs-focus: var(--cor-destaque);
 
-    --cor-fundo-pagina-overlay: rgba(10, 10, 10, 0.97); 
-    --cor-fundo-body: #000000; /* Preto puro para o body */
-    --cor-bordas-secoes-pagina: #ffffff; 
+    --cor-fundo-pagina-overlay: rgba(10, 10, 10, 0.97);
+    --cor-fundo-body: #000000;
+    --cor-bordas-secoes-pagina: #ffffff;
     --cor-aptidao-marcada: var(--cor-destaque);
 
-    --imagem-fundo-body: none; /* Sem imagem de fundo */
+    --imagem-fundo-body: none;
     --imagem-textura-bloco: none;
-    --cor-fallback-bloco: #101010; /* Fundo de bloco escuro */
-    --background-blend-bloco: normal; /* Sem blend mode especial */
+    --cor-fallback-bloco: #101010;
+    --background-blend-bloco: normal;
 }
-
 
 /* === ESTILOS GLOBAIS === */
 html { height: 100%; box-sizing: border-box; }
@@ -89,7 +88,7 @@ body {
     font-family: var(--font-labels-botoes);
     background-color: var(--cor-fundo-body);
     background-image: var(--imagem-fundo-body);
-    color: var(--cor-texto-principal-pagina); /* Cor base do texto no body */
+    color: var(--cor-texto-principal-pagina);
     display: flex; flex-direction: column;
     line-height: 1.5;
     background-size: cover; background-position: center center; background-attachment: fixed;
@@ -97,12 +96,192 @@ body {
     transition: background-color 0.5s ease, color 0.5s ease;
     overflow-x: hidden;
 }
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
 
-/* CONTROLS BAR e THEME SWITCHER (fixos no topo) */
+/* ========== PAINEL DE AUTENTICAÇÃO LATERAL ========== */
+.auth-panel {
+    position: fixed;
+    top: 0;
+    left: -380px; /* Começa fora da tela, ajuste conforme a largura */
+    width: 360px; /* Largura do painel */
+    height: 100vh;
+    background-color: var(--cor-fallback-bloco);
+    color: var(--cor-texto-principal-pagina);
+    border-right: 2px solid var(--cor-destaque);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+    z-index: 1003; /* Acima da controls-bar e theme-switcher no fluxo normal */
+    font-family: var(--font-labels-botoes);
+    transition: left 0.3s ease-in-out;
+    overflow-y: auto;
+    padding-top: 55px; /* Espaço para a controls-bar não sobrepor */
+}
+.auth-panel.visible {
+    left: 0;
+}
+.auth-container {
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.auth-container h2, .auth-container h3 {
+    font-family: var(--font-titulos-secao);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--cor-texto-principal-pagina);
+    font-size: 1.2em;
+}
+.auth-container h3 {
+    font-size: 1em;
+    margin-bottom: 8px;
+}
+.auth-container label:not(.sr-only) {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.8em;
+    color: var(--cor-texto-secundario-pagina);
+    text-transform: uppercase;
+}
+.auth-container input[type="email"],
+.auth-container input[type="password"],
+.auth-container input[type="text"],
+.auth-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid var(--cor-bordas-inputs);
+    background-color: var(--cor-fundo-inputs);
+    color: var(--cor-texto-inputs);
+    border-radius: 2px;
+    font-family: var(--font-maquina-escrever);
+    box-sizing: border-box;
+    font-size: 0.95em;
+}
+.auth-container input::placeholder {
+     color: color-mix(in srgb, var(--cor-texto-inputs) 35%, transparent) ; font-style: italic; opacity: 0.7;
+}
+.auth-container button {
+    background-color: var(--cor-destaque);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 2px;
+    width: 100%;
+    text-transform: uppercase;
+    font-family: var(--font-labels-botoes);
+    margin-top: 5px;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+}
+.auth-container button:hover {
+    background-color: var(--cor-destaque-hover);
+}
+.auth-container p {
+    font-size: 0.85em;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: var(--cor-texto-secundario-pagina);
+}
+.auth-container a {
+    color: var(--cor-destaque);
+    text-decoration: none;
+    font-weight: bold;
+}
+.auth-container a:hover {
+    text-decoration: underline;
+}
+.auth-container hr {
+    border: none;
+    border-top: 1px solid var(--cor-bordas-secoes-pagina);
+    margin: 18px 0;
+}
+.auth-container #userInfo p {
+    margin-bottom: 10px;
+    text-align: left;
+}
+.auth-container #userInfo #userCharacterSelect {
+    margin-bottom: 8px;
+}
+.auth-container #userInfo #loadSelectedCharacterButton,
+.auth-container #userInfo #deleteSelectedCharacterButton {
+    margin-top: 8px;
+}
+.auth-container #newCharSaveName { /* Especificidade para o input de nome */
+    margin-bottom: 4px !important;
+}
+.auth-container small {
+    display: block;
+    font-size: 0.75em;
+    color: var(--cor-texto-secundario-pagina);
+    margin-top: 2px; /* Reduzido para ficar mais próximo do input */
+    margin-bottom: 10px;
+    text-align: left;
+    padding-left: 2px;
+    line-height: 1.3;
+}
+
+/* CONTROLS BAR e THEME SWITCHER */
+.controls-bar {
+    background-color: rgba(10, 10, 10, 0.97);
+    padding: 8px 10px; /* Ajustado */
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px; /* Ajustado */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.65);
+    position: fixed;
+    top: 0; left: 0; z-index: 1000;
+    border-bottom: 1px solid var(--cor-destaque);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    min-height: 50px;
+}
+.controls-bar button {
+    background-color: transparent;
+    color: var(--cor-texto-principal-pagina);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 7px 10px; /* Ajustado */
+    font-family: var(--font-labels-botoes);
+    font-size: 0.75em; /* Ajustado */
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.1s ease-out;
+    display: inline-flex; align-items: center; gap: 6px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    white-space: nowrap; /* Evita quebra de linha nos botões */
+}
+.icon-svg { width:14px; height:14px; fill: currentColor; }
+.controls-bar button:hover {
+    background-color: var(--cor-destaque);
+    border-color: var(--cor-destaque-hover);
+    color: #fff; transform: translateY(-1px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.controls-bar button:active { transform: translateY(0px); }
+
+.dice-roller { display: flex; align-items: center; gap: 8px; /* Mantido, mas theme-switcher vai para o final */ }
+#diceResult { color: var(--cor-texto-principal-pagina); font-family: var(--font-maquina-escrever); font-size: 1em; }
+
 .theme-switcher {
-    position: fixed; top: 10px; right: 15px; z-index: 1002; /* Acima da controls-bar */
-    background-color: rgba(10,10,10,0.85); padding: 5px 8px; border-radius: 3px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 6px;
+    position: static; /* Integrado à controls-bar */
+    margin-left: auto; /* Empurra para o final da flexbox */
+    background-color: transparent; padding: 0; box-shadow: none;
+    display: flex; align-items: center; gap: 6px;
 }
 .theme-switcher label { font-size: 0.75em; color: #bbb; margin-bottom: 0; text-transform: uppercase; }
 .theme-switcher select {
@@ -110,70 +289,55 @@ body {
     border-radius: 2px; font-size: 0.75em; width: auto; font-family: var(--font-labels-botoes);
 }
 
-.controls-bar {
-    background-color: rgba(10, 10, 10, 0.97); padding: 8px 15px; /* Reduzido um pouco */
-    width: 100%; display: flex; justify-content: flex-start; align-items: center; gap: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.65); position: fixed; /* MUDADO PARA FIXED */
-    top: 0; left: 0; z-index: 1000; border-bottom: 1px solid var(--cor-destaque);
-    transition: background-color 0.3s ease, border-color 0.3s ease; min-height: 45px; /* Altura mínima */
-}
-.controls-bar button {
-    background-color: transparent; color: var(--cor-texto-principal-pagina); border: 1px solid rgba(255,255,255,0.25); padding: 7px 12px;
-    font-family: var(--font-labels-botoes); font-size: 0.8em; cursor: pointer; border-radius: 2px;
-    transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.1s ease-out;
-    display: inline-flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px;
-}
-.icon-svg { width:14px; height:14px; fill: currentColor; }
-.controls-bar button:hover { background-color: var(--cor-destaque); border-color: var(--cor-destaque-hover); color: #fff; transform: translateY(-1px); box-shadow: 0 1px 3px rgba(0,0,0,0.2);}
-.controls-bar button:active { transform: translateY(0px); }
-.dice-roller { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-#diceResult { color: var(--cor-texto-principal-pagina); font-family: var(--font-maquina-escrever); font-size: 1em; }
-
-/* NOTIFICATION AREA (abaixo da controls bar) */
+/* NOTIFICATION AREA */
 #notificationArea {
-    position: fixed; top: 55px; /* (altura da controls-bar + respiro) */
-    left: 50%; transform: translateX(-50%) translateY(-20px);
-    background-color: var(--cor-destaque); color: white; padding: 10px 20px; border-radius: 3px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 1001; opacity: 0;
-    transition: opacity 0.4s ease-in-out, transform 0.4s ease-out; pointer-events: none;
+    position: fixed; top: 60px; /* Abaixo da controls-bar */
+    left: 50%; transform: translateX(-50%) translateY(-10px);
+    padding: 10px 20px; border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 2000; /* Mais alto */
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-out;
+    pointer-events: none;
     font-family: var(--font-labels-botoes); text-align: center; font-size: 0.85em;
+    max-width: 80%; /* Para não ocupar a tela inteira */
 }
 #notificationArea.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+#notificationArea.success { background-color: #4CAF50; color: white; }
+#notificationArea.error { background-color: #f44336; color: white; }
+#notificationArea.info { background-color: var(--cor-destaque); color: white; }
+
 
 /* WORKSPACE E BLOCOS DRAGGABLE */
 .workspace-container {
     position: relative; width: 100%; flex-grow: 1;
-    padding: 65px 20px 20px 20px; /* Padding superior para acomodar controls-bar e theme-switcher */
-    overflow: auto; /* Permite scroll do workspace se necessário */
+    padding: 60px 15px 15px 15px; /* Padding superior para acomodar controls-bar */
+    overflow: auto;
 }
-
 .draggable-block {
-    position: absolute; /* Crucial para Interact.js posicionar */
+    position: absolute;
     background-color: var(--cor-fallback-bloco);
     background-image: linear-gradient(var(--cor-fundo-pagina-overlay), var(--cor-fundo-pagina-overlay)), var(--imagem-textura-bloco);
     background-blend-mode: var(--background-blend-bloco);
-    background-repeat: repeat, no-repeat; /* Textura repete, overlay não */
-    background-size: auto, cover; /* Textura em tamanho real, overlay cobre */
+    background-repeat: repeat, no-repeat;
+    background-size: auto, cover;
     background-position: center center;
     border: 1px solid var(--cor-bordas-secoes-pagina);
     box-shadow: 2px 2px 7px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.03) inset;
-    border-radius: 1px; /* Cantos bem retos */
+    border-radius: 1px;
     color: var(--cor-texto-principal-pagina);
     display: flex; flex-direction: column;
-    overflow: hidden; /* Esconde o conteúdo que exceder as bordas do bloco */
+    overflow: hidden;
     touch-action: none;
     transition: box-shadow 0.2s ease, opacity 0.2s ease, transform 0.15s ease-out;
-    min-width: 300px; /* Largura mínima para um bloco ser útil */
-    min-height: 100px; /* Altura mínima */
+    min-width: 300px;
+    min-height: 100px;
 }
 .draggable-block.interact-dragging, .draggable-block.interact-resizing {
     box-shadow: 5px 5px 18px rgba(0,0,0,0.4), 0 0 0 1.5px var(--cor-destaque) inset;
     opacity: 0.9;
-    /* transform: scale(1.01); (pode ser demais com o z-index já alto) */
 }
-
 .block-header {
-    padding: 7px 12px; /* Padding menor no header */
+    padding: 7px 12px;
     background-color: rgba(0,0,0,0.25);
     border-bottom: 1px solid var(--cor-bordas-secoes-pagina);
     cursor: grab; display: flex; justify-content: space-between; align-items: center; user-select: none;
@@ -181,42 +345,26 @@ body {
 }
 .block-header:active { cursor: grabbing; background-color: rgba(0,0,0,0.35); }
 .block-title {
-    font-family: var(--font-titulos-secao); font-size: 0.85em; /* Título do bloco menor */
+    font-family: var(--font-titulos-secao); font-size: 0.85em;
     text-transform: uppercase; letter-spacing: 1.5px; color: var(--cor-texto-principal-pagina); font-weight: normal;
 }
 .block-content {
     padding: 18px 22px; flex-grow: 1;
-    overflow-y: auto; /* Scroll se conteúdo do bloco for maior que sua altura */
-    /* max-height: calc(100vh - 150px); Limita a altura máxima do conteúdo rolável */
-    
-    /* === Adicionado: Estilização da Barra de Rolagem === */
-    scrollbar-width: thin; /* Para Firefox */
-    scrollbar-color: var(--cor-destaque-hover) rgba(0,0,0,0.1); /* Para Firefox: thumb e track */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--cor-destaque-hover) rgba(0,0,0,0.1);
 }
-
-.block-content::-webkit-scrollbar { /* Para Chrome, Edge, Safari */
-    width: 10px;
-    height: 10px;
-}
-.block-content::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.1); /* Cor de fundo da trilha */
-    border-radius: 5px;
-}
+.block-content::-webkit-scrollbar { width: 10px; height: 10px; }
+.block-content::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); border-radius: 5px; }
 .block-content::-webkit-scrollbar-thumb {
-    background-color: var(--cor-destaque-hover); /* Cor do "polegar" da barra */
+    background-color: var(--cor-destaque-hover);
     border-radius: 5px;
-    border: 2px solid transparent; /* Cria um padding visual */
+    border: 2px solid transparent;
     background-clip: content-box;
 }
-.block-content::-webkit-scrollbar-thumb:hover {
-    background-color: var(--cor-destaque);
-}
-/* === Fim da estilização da Barra de Rolagem === */
+.block-content::-webkit-scrollbar-thumb:hover { background-color: var(--cor-destaque); }
 
-
-/* ESTILOS INTERNOS DA FICHA (COPIADOS DA SUA VERSÃO FUNCIONAL ANTERIOR E ADAPTADOS) */
-/* Assegure que todos os seletores estão prefixados com .block-content para especificidade */
-/* ... (Seu CSS interno restante aqui, que já é bastante completo) ... */
+/* ESTILOS INTERNOS DA FICHA */
 .block-content input[type="text"], .block-content input[type="number"], .block-content textarea, .block-content select {
     background-color: var(--cor-fundo-inputs);
     border: 1px solid var(--cor-bordas-inputs);
@@ -229,7 +377,6 @@ body {
 }
 .block-content textarea { resize: vertical; min-height: 60px; line-height: 1.7; }
 .block-content input::placeholder, .block-content textarea::placeholder { color: color-mix(in srgb, var(--cor-texto-inputs) 35%, transparent) ; font-style: italic; opacity: 0.7;}
-
 .block-content input:focus, .block-content textarea:focus, .block-content select:focus {
     outline: none; background-color: color-mix(in srgb, var(--cor-fundo-inputs) 95%, white 5%); border-color: var(--cor-bordas-inputs-focus);
     box-shadow: 0 0 0 2.5px color-mix(in srgb, var(--cor-bordas-inputs-focus) 30%, transparent), inset 1px 1px 2px rgba(0,0,0,0.1);
@@ -250,7 +397,8 @@ body {
 .block-content .small-button { padding: 8px 12px; font-size: 0.7em; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: var(--cor-texto-principal-pagina); cursor: pointer; font-family: var(--font-labels-botoes); text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 6px; border-radius: 2px; transition: all 0.2s ease-out;}
 .block-content .small-button:hover { background-color: var(--cor-destaque); color:white; border-color: var(--cor-destaque-hover); transform: translateY(-1px); box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
 .block-content .small-button:active { transform: translateY(0); }
-
+.block-content .small-button.fardo-gasto { background-color: #777; color: #ccc; border-color: #555; }
+.block-content .small-button.fardo-gasto:hover { background-color: #888; }
 
 .block-content .main-content-wrapper { border-bottom: 1px solid var(--cor-bordas-secoes-pagina); padding-bottom: 18px; margin-bottom: 22px; }
 .block-content .section-title { font-family: var(--font-titulos-secao); text-transform: uppercase; font-weight: normal; font-size: 1.1em; color: var(--cor-texto-principal-pagina); border-bottom: 1px solid var(--cor-bordas-secoes-pagina); padding-bottom: 7px; margin-bottom: 15px; letter-spacing: 1.2px;}
@@ -277,19 +425,20 @@ body {
 
 .block-content .section-box { border: 1px solid var(--cor-bordas-secoes-pagina); padding: 15px; margin-bottom: 20px; background-color: rgba(0,0,0,0.1); border-radius: 2px;}
 .block-content .section-box h3 { font-family: var(--font-titulos-secao); font-size: 1.15em; color: var(--cor-texto-principal-pagina); margin-top: 0; margin-bottom: 15px; border-bottom: 1px solid var(--cor-bordas-secoes-pagina); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1.2px;}
-.block-content .section-box h3 small { font-family: var(--font-labels-botoes); font-size: 0.75em; font-weight: normal; text-transform: none; color: var(--cor-texto-secundario-pagina); letter-spacing: 0.3px;}
+.block-content .section-box h3 small { font-family: var(--font-labels-botoes); font-size: 0.75em; font-weight: normal; text-transform: none; color: var(--cor-texto-secundario-pagina); letter-spacing: 0.3px; display: block; margin-top: 4px;}
+#aptidoesCountDisplay { font-weight: bold; color: var(--cor-destaque); }
+
 
 .block-content .aptidoes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 8px 15px; font-size: 0.85em; }
 .block-content .aptidao-item { display: flex; align-items: center; }
 .block-content .aptidao-item input[type="checkbox"] { width: auto; margin-right: 8px; transform: scale(0.8); accent-color: var(--cor-destaque); }
 .block-content .aptidao-item label { font-family: var(--font-maquina-escrever); font-weight: normal; margin-bottom: 0; display:inline; cursor: pointer; color: var(--cor-texto-principal-pagina); font-size: 0.95em;}
-.block-content .aptidao-item .aptidao-nome.selected-aptitude { color: var(--cor-aptidao-marcada); text-decoration: underline; text-decoration-color: var(--cor-aptidao-marcada); text-decoration-thickness: 1.5px; text-underline-offset: 3px;}
+.block-content .aptidao-item input[type="checkbox"]:checked + label { color: var(--cor-aptidao-marcada); text-decoration: underline; text-decoration-color: var(--cor-aptidao-marcada); text-decoration-thickness: 1.5px; text-underline-offset: 3px;}
 
 .block-content .atuacao-config { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 15px; margin-bottom: 10px; }
 .block-content #atuacaoDetalhes { font-size: 0.8em; margin-top: 12px; padding-left: 12px; border-left: 2px solid var(--cor-destaque); background-color: rgba(0,0,0,0.05); padding: 10px; font-family: var(--font-labels-botoes); color: var(--cor-texto-secundario-pagina);}
 .block-content #atuacaoDetalhes p { margin: 5px 0; letter-spacing: 0.3px; }
-.block-content #displayNivelMalandragem, .block-content #displayNivelFortuna, .block-content #itensIniciaisFortuna { font-weight: bold; font-family: var(--font-maquina-escrever); color: var(--cor-texto-principal-pagina); /* Mais destaque para texto da fortuna */ }
-
+.block-content #displayNivelMalandragem, .block-content #displayNivelFortuna, .block-content #itensIniciaisFortuna { font-weight: bold; font-family: var(--font-maquina-escrever); color: var(--cor-texto-principal-pagina); }
 
 .block-content .details-list { display: flex; flex-direction: column; gap: 10px; }
 .block-content .detail-item { display: flex; align-items: center; gap: 10px; border-bottom: 1px dotted var(--cor-bordas-secoes-pagina); padding-bottom: 7px;}
@@ -305,15 +454,13 @@ body {
 .block-content .inventory-box { flex: 1.2; }
 .block-content .contacts-box { flex: 0.8; }
 .block-content .contacts-box textarea { min-height: 110px; font-size: 0.9em;}
-.block-content #inventarioItens .item-slot, .block-content #vestimentasAtivas .vestimenta-slot { display: flex; align-items: center; margin-bottom: 6px; gap: 6px;}
-.block-content #inventarioItens .item-slot input, .block-content #vestimentasAtivas .vestimenta-slot input { flex-grow: 1; font-size: 0.95em;}
+/* Removido .item-slot e .vestimenta-slot pois os textareas são usados diretamente */
+.block-content #inventarioItens textarea, .block-content #vestimentasAtivas textarea { font-size: 0.95em;}
 
 .block-content #habilidadesAdquiridas.full-width-textarea { min-height: 70px; }
 .block-content .logo-footer { font-family: var(--font-logo); font-style: normal; font-size: 2.2em; text-align: center; margin-top: 30px; padding-top: 18px; border-top: 2px solid var(--cor-bordas-secoes-pagina); color: var(--cor-texto-principal-pagina); text-shadow: 1px 1px 3px rgba(0,0,0,0.7);}
 
-
-.block-content .investigation-sheet .sheet-header { font-family: var(--font-titulos-secao); font-size: 1.5em; color: var(--cor-texto-principal-pagina); text-align: center; border-bottom: 1px solid var(--cor-bordas-secoes-pagina); margin-bottom: 25px; padding-bottom: 12px; text-transform: uppercase; letter-spacing: 1.5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);}
-.block-content .investigation-header { /* Renomeei para evitar conflito de nome com .sheet-header geral */
+.block-content .investigation-header {
     font-family: var(--font-titulos-secao); font-size: 1.5em; color: var(--cor-texto-principal-pagina);
     text-align: center; border-bottom: 1px solid var(--cor-bordas-secoes-pagina);
     margin-bottom: 25px; padding-bottom: 12px; text-transform: uppercase; letter-spacing: 1.5px;
@@ -325,21 +472,21 @@ body {
 .block-content .large-textarea { width: 100%; min-height: 150px; }
 .block-content .notes-textarea { min-height: 100px; }
 
-/* PRINT STYLES (Exemplo inicial, precisa ser expandido) */
+/* PRINT STYLES */
 @media print {
     body {
         background-image: none !important;
         background-color: #fff !important;
         color: #000 !important;
-        font-size: 10pt; /* Tamanho base para impressão */
+        font-size: 10pt;
         padding: 0;
         margin:0;
     }
-    .theme-switcher, .controls-bar, #notificationArea {
-        display: none !important; /* Esconde controles da UI */
+    .auth-panel, .controls-bar, #notificationArea {
+        display: none !important;
     }
     .workspace-container {
-        padding: 10mm !important; /* Margem para impressão */
+        padding: 10mm !important;
         overflow: visible !important;
         position: static !important;
         height: auto !important;
@@ -347,10 +494,10 @@ body {
         display: block !important;
     }
     .draggable-block {
-        position: relative !important; /* Blocos em fluxo, não absolutos */
-        width: 100% !important; /* Ocupa largura total */
+        position: relative !important;
+        width: 100% !important;
         height: auto !important;
-        page-break-inside: avoid; /* Tenta evitar quebrar blocos entre páginas */
+        page-break-inside: avoid;
         margin-bottom: 10mm;
         box-shadow: none !important;
         border: 1px solid #ccc !important;
@@ -374,21 +521,26 @@ body {
         background-color: #f9f9f9 !important;
         color: #000 !important;
     }
-    .block-content input[type="checkbox"] + label .aptidao-nome.selected-aptitude {
-        text-decoration: none; /* Simplifica para impressão */
+    .block-content .aptidao-item input[type="checkbox"]:checked + label {
+        text-decoration: none;
         font-weight: bold;
     }
-    /* ... Mais estilos para otimizar o layout de cada seção para impressão ... */
-    .pole-bar { background-color: #e0e0e0 !important; }
-    .pole-bubble { background-color: #aaa !important; border-color: #888 !important; }
-    .pole-bubble.filled { background-color: #555 !important; border-color: #333 !important; }
+    .block-content .pole-bar { background-color: #e0e0e0 !important; }
+    .block-content .pole-bubble { background-color: #aaa !important; border-color: #888 !important; }
+    .block-content .pole-bubble.filled { background-color: #555 !important; border-color: #333 !important; }
 
-    .nome-label, .nome-input, .section-title, .section-box h3 {
+    .block-content .nome-label, .block-content .nome-input, .block-content .section-title, .block-content .section-box h3 {
         color: #000 !important;
         text-shadow: none !important;
     }
-     #displayNivelMalandragem, #displayNivelFortuna, #itensIniciaisFortuna, .aptidao-item label, .attr-label {
+    .block-content #displayNivelMalandragem, .block-content #displayNivelFortuna, .block-content #itensIniciaisFortuna, .block-content .aptidao-item label, .block-content .attr-label {
         color: #333 !important;
     }
-
+    /* Esconder scrollbars na impressão */
+    .block-content {
+        scrollbar-width: none; /* Firefox */
+    }
+    .block-content::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge */
+    }
 }
