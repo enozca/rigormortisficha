@@ -79,6 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadSelectedCharacterButton = document.getElementById('loadSelectedCharacterButton');
     const deleteSelectedCharacterButton = document.getElementById('deleteSelectedCharacterButton');
     const newCharSaveNameInput = document.getElementById('newCharSaveName');
+	
+	    let isMobileLayout = false; // Flag para indicar layout mobile
+
+    function checkMobileLayout() {
+        isMobileLayout = window.innerWidth <= 768; // Mesmo breakpoint do CSS
+    }
 
     // --- CONFIGURAÇÃO FIREBASE ---
     const firebaseConfig = {
@@ -176,8 +182,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- INICIALIZAÇÃO E ESTADO DE AUTENTICAÇÃO ---
     function initializeApp() {
-        if (htmlElement) loadTheme();
-        if (themeSelector) setupThemeSwitcher();
+    if (htmlElement) loadTheme();
+    if (themeSelector) setupThemeSwitcher();
+    
+    checkMobileLayout(); // Verifica no início
+    window.addEventListener('resize', checkMobileLayout); // E em redimensionamentos
+
+    // Só inicializa InteractJS se NÃO for layout mobile
+    if (!isMobileLayout && workspaceContainer && typeof interact !== 'undefined') {
+        initializeInteractJs();
+    } else if (isMobileLayout && typeof interact !== 'undefined') {
+        // Se for mobile e interact existir, garantir que está desabilitado para os blocos
+        interact('.resize-drag.draggable-block').unset(); // Remove configurações do InteractJS
+        console.log("InteractJS desabilitado para layout mobile.");
+    }
         if (workspaceContainer && typeof interact !== 'undefined') initializeInteractJs();
         
         auth.onAuthStateChanged(user => {
@@ -914,7 +932,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 modifiers: [interact.modifiers.restrictSize({ min: { width: 250, height: 120 } })],
                 inertia: false
-            });
+            })
+			    window.addEventListener('resize', () => {
+        const previouslyMobile = isMobileLayout;
+        checkMobileLayout();
+        if (previouslyMobile && !isMobileLayout && workspaceContainer && typeof interact !== 'undefined') {
+            // Transicionou de mobile para desktop
+            initializeInteractJs();
+            loadBlockLayout(); // Recarrega layout salvo (ou default de desktop)
+        } else if (!previouslyMobile && isMobileLayout && typeof interact !== 'undefined') {
+            // Transicionou de desktop para mobile
+            interact('.resize-drag.draggable-block').unset();
+            setDefaultBlockLayout(); // Força layout mobile
+            console.log("InteractJS desabilitado ao transicionar para layout mobile.");
+        }
+    });
     }
     function saveBlockLayout() {
         const layout = {};
@@ -932,6 +964,10 @@ document.addEventListener('DOMContentLoaded', () => {
         saveToLocalStorage(BLOCK_LAYOUT_KEY, JSON.stringify(layout));
     }
     function loadBlockLayout() {
+        if (isMobileLayout) { // Se for mobile, não carrega posições/tamanhos salvos de desktop
+            setDefaultBlockLayout(); // Aplica o layout empilhado do CSS
+            return;
+        }
         const savedLayout = localStorage.getItem(BLOCK_LAYOUT_KEY);
         if (savedLayout) {
             try {
@@ -965,19 +1001,17 @@ document.addEventListener('DOMContentLoaded', () => {
             setDefaultBlockLayout();
         }
     }
+	
     function setDefaultBlockLayout() {
         document.querySelectorAll('.resize-drag.draggable-block').forEach(block => {
             block.style.transform = '';
-            block.style.width = block.dataset.defaultWidth || ''; // Usa default do data-attribute se existir
-            block.style.height = block.dataset.defaultHeight || '';// Usa default do data-attribute se existir
-            block.style.zIndex = ''; // Reseta para o valor do CSS
+            // No mobile, width e height são controlados principalmente pelo CSS (100% e auto)
+            // No desktop, resetar para default do dataset ou CSS
+            block.style.width = isMobileLayout ? '' : (block.dataset.defaultWidth || '');
+            block.style.height = isMobileLayout ? '' : (block.dataset.defaultHeight || '');
+            block.style.zIndex = '';
             block.removeAttribute('data-x');
             block.removeAttribute('data-y');
-        });
-        maxZIndex = 0; // Recalcular com base nos z-index do CSS dos blocos
-        document.querySelectorAll('.draggable-block').forEach(el => { 
-            const z = parseInt(window.getComputedStyle(el).zIndex, 10);
-            if (!isNaN(z) && z > maxZIndex) maxZIndex = z; 
         });
         localStorage.removeItem(BLOCK_LAYOUT_KEY);
         console.log("Block layout reset to default (CSS styles).");

@@ -544,3 +544,198 @@ body {
         display: none; /* Chrome, Safari, Edge */
     }
 }
+
+/* === ESTILOS MOBILE === */
+@media (max-width: 768px) {
+
+    /* --- AJUSTES GLOBAIS PARA MOBILE --- */
+    body {
+        font-size: 14px; /* Reduzir um pouco o tamanho base da fonte */
+    }
+
+    /* --- CONTROLS BAR MOBILE --- */
+    .controls-bar {
+        padding: 6px 8px; /* Menor padding */
+        gap: 5px; /* Menor espaçamento entre botões */
+        min-height: 45px;
+        overflow-x: auto; /* Permite scroll horizontal se os botões não couberem */
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch; /* Scroll suave em iOS */
+    }
+    .controls-bar button {
+        padding: 6px 8px;
+        font-size: 0.7em; /* Fontes menores nos botões */
+        gap: 4px;
+    }
+    .icon-svg {
+        width: 12px;
+        height: 12px;
+    }
+    .dice-roller {
+        /* Talvez precise de mais ajustes dependendo de quantos botões existem */
+    }
+    .theme-switcher {
+        /* Pode ser necessário simplificar ou mover */
+    }
+    .theme-switcher label {
+        font-size: 0.7em;
+    }
+    .theme-switcher select {
+        font-size: 0.7em;
+        padding: 2px 4px;
+    }
+
+
+    /* --- AUTH PANEL MOBILE --- */
+    .auth-panel {
+        width: 85%; /* Ocupa mais da tela */
+        left: -90%; /* Ajustar para a nova largura */
+        padding-top: 50px; /* Espaço para a controls-bar */
+    }
+    .auth-panel.visible {
+        left: 0;
+    }
+    .auth-container {
+        padding: 15px;
+    }
+    .auth-container input[type="email"],
+    .auth-container input[type="password"],
+    .auth-container input[type="text"],
+    .auth-container select {
+        padding: 12px; /* Aumentar área de toque */
+        font-size: 1em; /* Garantir legibilidade */
+    }
+    .auth-container button {
+        padding: 12px 15px;
+        font-size: 0.95em;
+    }
+
+    /* --- NOTIFICATION AREA MOBILE --- */
+    #notificationArea {
+        top: 50px; /* Ajustar se a controls-bar for menor */
+        width: 90%;
+        padding: 8px 15px;
+        font-size: 0.8em;
+    }
+
+    /* --- WORKSPACE E BLOCOS MOBILE --- */
+    .workspace-container {
+        padding: 55px 10px 10px 10px; /* Menor padding lateral */
+        display: flex; /* Manter flex para empilhamento se necessário */
+        flex-direction: column; /* Empilhar blocos */
+        align-items: center; /* Centralizar blocos se eles não forem 100% da largura */
+    }
+
+    .draggable-block {
+        position: relative !important; /* !!! MUDANÇA CRUCIAL: Remove posicionamento absoluto !!! */
+        width: 100% !important;       /* Ocupa largura total */
+        max-width: 500px; /* Limite máximo para não ficar muito largo em tablets na vertical */
+        height: auto !important;       /* Altura automática baseada no conteúdo */
+        margin-bottom: 20px;         /* Espaço entre blocos empilhados */
+        transform: none !important;    /* Remove transformações de drag */
+        left: auto !important; top: auto !important; /* Reseta posicionamento */
+        z-index: auto !important;      /* Reseta z-index */
+        overflow: visible; /* Permitir que o conteúdo defina a altura */
+    }
+    /* Esconder as "alças" de redimensionamento visualmente se o interact.js ainda as adicionar */
+    .resize-handle { /* Classe hipotética, verifique como o interact.js nomeia */
+        display: none !important;
+    }
+    .block-header {
+        cursor: default; /* Drag não é mais o comportamento primário */
+    }
+    .block-content {
+        padding: 15px; /* Menor padding interno nos blocos */
+        overflow-y: visible; /* Scroll do conteúdo não é mais necessário por bloco */
+        max-height: none; /* Remove limitação de altura */
+    }
+    .block-content input, .block-content textarea, .block-content select {
+        font-size: 0.95em; /* Ajuste fino para mobile */
+    }
+
+
+    /* --- AJUSTES ESPECÍFICOS DA FICHA PARA MOBILE --- */
+    .block-content .nome-label {
+        font-size: 1.5em; /* Reduzir um pouco */
+        display: block; /* Forçar quebra de linha se necessário */
+        margin-bottom: 5px;
+    }
+    .block-content .nome-input {
+        font-size: 1.2em;
+    }
+    .block-content .character-core-info {
+        grid-template-columns: 1fr; /* Um item por linha */
+        gap: 10px;
+    }
+    .block-content .attributes-and-poles-section {
+        flex-direction: column; /* Empilhar colunas de atributos e polos */
+        gap: 20px;
+    }
+    .block-content .attributes-values-column,
+    .block-content .attributes-details-and-poles-column {
+        min-width: 100%; /* Ocupar toda a largura */
+    }
+    .block-content .aptidoes-grid {
+        grid-template-columns: 1fr; /* Uma aptidão por linha para melhor toque */
+        gap: 10px;
+    }
+    .block-content .aptidao-item label {
+        font-size: 1em; /* Mais fácil de ler/tocar */
+    }
+
+    .block-content .inventory-contacts-section {
+        flex-direction: column; /* Empilhar inventário e contatos */
+    }
+    .block-content .section-box h3 small {
+        font-size: 0.7em;
+    }
+    .block-content .details-list .detail-item {
+        flex-direction: column; /* Empilhar label e input nos detalhes */
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .block-content .detail-item label {
+        min-width: auto; /* Permitir que a label ocupe a largura necessária */
+    }
+    .block-content .logo-footer {
+        font-size: 1.8em;
+        margin-top: 20px;
+        padding-top: 12px;
+    }
+
+    /* Investigação */
+    .block-content .investigation-section label {
+        font-size: 0.85em;
+    }
+    .block-content .large-textarea {
+        min-height: 120px;
+    }
+}
+
+/* Ajustes para telas muito pequenas (ex: smartphones na vertical) */
+@media (max-width: 480px) {
+    .controls-bar button {
+        font-size: 0.65em; /* Ainda menor */
+        padding: 5px 6px;
+    }
+    .controls-bar .icon-svg {
+        width: 10px;
+        height: 10px;
+    }
+    #diceResult {
+        font-size: 0.9em;
+    }
+
+    .block-content {
+        padding: 10px;
+    }
+    .block-content .section-title,
+    .block-content .section-box h3 {
+        font-size: 1em; /* Reduzir títulos de seção */
+        letter-spacing: 1px;
+    }
+     .block-content .small-button {
+        padding: 7px 10px;
+        font-size: 0.65em;
+    }
+}
